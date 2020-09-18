@@ -1,0 +1,95 @@
+﻿body {
+    color: black;
+    font-size: 11pt;
+    font-family:Arial;
+}
+
+h1 {
+    color: #0066cc;
+    text-align:right;
+}
+
+#infoMe{
+    text-align:right;
+}
+
+h3 {
+    color: #0066cc;
+}
+
+p{
+    padding-left: 35px;
+}
+
+.AP{
+    padding-left: 35px;
+}
+
+#DJ23{
+    padding-left: 400px;
+}
+
+#Location {
+    padding-left: 430px;
+}
+
+#Diplome {
+    padding-left: 405px;
+}
+
+#Year {
+    padding-left: 478px;
+}
+
+#ProLang{
+    padding-left:411px;
+}
+
+#WD {
+    padding-left: 495px;
+}
+
+#SA {
+    padding-left: 442px;
+}
+
+.Experience{
+    padding-left: 60px;
+}
+
+.AcaProj{
+    padding-left: 60px;
+}
+
+#Manda{
+    padding-left: 480px;
+}
+
+#Khm{
+    padding-left: 482px;
+}
+
+.question_mark{
+    width: 100px;
+    height: 100px;
+}
+
+#marche_monde{
+    width: 30%;
+    height: 30%;
+}
+
+#petits_dejeuners{
+    width: 20%;
+    height: 20%;
+}
+
+#illumine_la_nuit{
+    width: 30%;
+    height: 30%;
+}
+
+#art_center{
+    width: 20%;
+    height: 20%;
+}

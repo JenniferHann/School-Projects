@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML Forms</title>
+    <style>
+        form {
+            margin: auto;
+        }
+    </style>
+    <link href="online_test.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 align="center">HTML Lab - Forms</h1>
+    <br />
+    <h2 align="center">Please log in to take the exam</h2>
+    <form action="exam.cshtml" method="post" id="exam" name="exam">
+        <div id="content">
+            <fieldset>
+                <div>
+                    <label for="UserName">User Name</label>
+                    <input type="text" id="UserName" name="UserName" placeholder="Enter user name" />
+                </div>
+                <div id="pwd">
+                    <label>Password  </label>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <input type="submit" value="Login" />
+            </fieldset>
+            <br />
+            <fieldset>
+                <label>Change color</label>
+                <input type="color" id="color" name="color" />
+            </fieldset>
+        </div>
+    </form>
+
+</body>
+</html>

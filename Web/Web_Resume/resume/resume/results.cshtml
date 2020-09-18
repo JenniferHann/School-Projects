@@ -1,0 +1,147 @@
+﻿<head>
+    <link href="~/online_test.css" rel="stylesheet" />
+</head>
+@{
+    if (IsPost)
+    {
+        //Answer
+        string UserName = Request.Form["UserName"];
+        string many = Request.Form["many"];
+        string OS = Request.Form["OS"];
+        string HTTP = Request.Form["HTTP"];
+        string OpenSource = Request.Form["OpenSource"];
+        string Binary = Request.Form["Binary"];
+        string Hexa = Request.Form["Hexa"];
+        string WWW = Request.Form["WWW"];
+        int result;
+        result = 0;
+        <body>
+            <h1 align="center">Exam Results</h1>
+            <fieldset id="fieldset">
+                <legend id="legend">Multiple Choice Question</legend>
+                <label>How many bits are there in one byte? <bold>(2 Points)</bold></label>
+                <ul>
+                    <li>Correct Answer: 8 bits</li>
+                    <li>Your Answer: @many</li>
+                    @if (many == "8")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 2;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+                <label>What are the two main parts on an operating system? <bold>(2 Points)</bold></label>
+                <ul>
+                    <li>Correct Answer: Shell and Kernal</li>
+                    <li>Your answer: @OS</li>
+                    @if (OS == "ShellAndKernal")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 2;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+            </fieldset>
+            <br />
+            <fieldset id="fieldset">
+                <legend id="legend">True or False</legend>
+                <label>HTTP stands for hyper text transfer protocol. <bold>(1 Points)</bold></label>
+                <ul>
+                    <li>Correct Answer: True</li>
+                    <li>Your answer: @HTTP</li>
+                    @if (HTTP == "True")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 1;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+                <label>Open Source Solftware can be modified by anyone and are offered for an extra charge. <bold>(1 Point)</bold></label>
+                <ul>
+                    <li>Correct Answer: False</li>
+                    <li>Your Answer: @OpenSource</li>
+                    @if (OpenSource == "False")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 1;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+            </fieldset>
+            <br />
+            <fieldset id="fieldset">
+                <legend id="legend">Choose all that apply</legend>
+                <label>The four essential components that make up the World Wide Web are: <bold>(2 Points)</bold></label>
+                <ul>
+                    <li>Correct Answer: HTML, Browser, Web Server, HTTP</li>
+                    <li>Your answer: @WWW</li>
+                    @if (WWW == "HTML,Browser,Web Server,HTTP")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 2;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+            </fieldset>
+            <br />
+            <fieldset id="fieldset">
+                <legend id="legend">Fill in the blank</legend>
+                <label>Binary value "1101" equals __________ in decimal and ___________ in hexadecimal. <bold>(2 Points)</bold></label>
+                <ul>
+                    <li>Correct Answer (first): 13</li>
+                    <li>Your Answer: @Binary</li>
+                    @if (Binary == "13")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 1;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                    <li>Correct Answer (second): D</li>
+                    <li>Your Answer: @Hexa</li>
+                    @if (Hexa == "D")
+                    {
+                        <text>&#x2714</text>
+                        result = result + 1;
+                    }
+                    else
+                    {
+                        <text>&#x274C</text>
+                    }
+                </ul>
+            </fieldset>
+            <br />
+            <h3 align="center"><bold>You scored @result out of 10.</bold></h3>
+            @if (result < 5)
+            {
+                <h3 align="center"><bold>You have failed the exam. Try harder next time.</bold></h3>
+            }
+            else
+            {
+                <h3 align="center"><bold>Congratulations. You have passed the exam.</bold></h3>
+            }
+        </body>
+    }
+    else
+    {
+        <h1>You need to fill up the for first. Please click on the link below.</h1>
+        <a href="~/index.html">Log In Page</a>
+    }
+}

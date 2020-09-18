@@ -1,0 +1,144 @@
+main{
+    background-color: rgba(0, 0,0, 0.6);   
+}
+
+div{
+    color: white;   
+}
+
+h2{
+    color: white;
+}
+
+h1{
+    color: white;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+html{
+    background: url(rocket.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: scroll;
+}
+
+button {
+    padding: 0px;
+}
+
+section{
+    padding: 30px;   
+}
+
+.containerRockets{
+    position: relative;
+}
+
+.containerRockets:hover image{
+    opacity: 0.65;;
+}
+
+.containerRockets:hover .text{
+    opacity: 1;
+}
+
+.text{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+p{
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
+#rockets{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        'R1 R2'
+        'R3 R4';
+    padding: 20px;
+    justify-content: space-around;
+}
+
+#r1{
+    grid-area: R1; 
+    opacity: 1;
+    display: block;
+    transition: .5 ease;
+    backface-visibility: hidden;
+}
+
+#r2{
+    grid-area: R2;
+    opacity: 1;
+    display: block;
+    transition: .5 ease;
+    backface-visibility: hidden;
+}
+
+#r3{
+    grid-area: R3;
+    opacity: 1;
+    display: block;
+    transition: .5 ease;
+    backface-visibility: hidden;
+}
+
+#r4{
+    grid-area: R4; 
+    opacity: 1;
+    display: block;
+    transition: .5 ease;
+    backface-visibility: hidden;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid white;
+}
+
+#PL-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1050px){
+
+    #rockets{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: 
+            'R1'
+            'R2'
+            'R3'
+            'R4';
+        padding: 20px;
+        justify-content: space-around;
+    }
+}

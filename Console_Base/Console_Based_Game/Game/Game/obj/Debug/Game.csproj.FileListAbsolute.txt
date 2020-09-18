@@ -1,0 +1,7 @@
+C:\Users\Dipesh\Desktop\Game\Game\bin\Debug\Game.exe.config
+C:\Users\Dipesh\Desktop\Game\Game\bin\Debug\Game.exe
+C:\Users\Dipesh\Desktop\Game\Game\bin\Debug\Game.pdb
+C:\Users\Dipesh\Desktop\Game\Game\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\Dipesh\Desktop\Game\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\Dipesh\Desktop\Game\Game\obj\Debug\Game.exe
+C:\Users\Dipesh\Desktop\Game\Game\obj\Debug\Game.pdb

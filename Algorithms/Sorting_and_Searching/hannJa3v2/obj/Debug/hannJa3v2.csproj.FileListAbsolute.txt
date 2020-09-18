@@ -1,0 +1,14 @@
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\obj\Debug\hannJa3v2.csprojAssemblyReference.cache
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\obj\Debug\hannJa3v2.csproj.CoreCompileInputs.cache
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\bin\Debug\hannJa3v2.exe.config
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\bin\Debug\hannJa3v2.exe
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\bin\Debug\hannJa3v2.pdb
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\obj\Debug\hannJa3v2.exe
+c:\users\1867219\source\repos\hannJa3v2\hannJa3v2\obj\Debug\hannJa3v2.pdb
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\bin\Debug\hannJa3v2.exe.config
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\bin\Debug\hannJa3v2.exe
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\bin\Debug\hannJa3v2.pdb
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\obj\Debug\hannJa3v2.csprojAssemblyReference.cache
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\obj\Debug\hannJa3v2.csproj.CoreCompileInputs.cache
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\obj\Debug\hannJa3v2.exe
+C:\Users\1867219\Downloads\hannJa3\hannJa3\hannJa3v2\obj\Debug\hannJa3v2.pdb

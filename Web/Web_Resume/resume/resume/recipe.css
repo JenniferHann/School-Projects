@@ -1,0 +1,36 @@
+﻿body {
+    font-family: Georgia;
+    font: 11px;
+}
+
+#titleP {
+    background-color: #F0F0F0;
+    color: #A4A400;
+    font-family: Lucida Sans Unicode;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font: 22px;
+}
+
+#title {
+    background-color: #F0F0F0;
+    color: #A4A400;
+    font-family: Lucida Sans Unicode;
+    text-decoration: underline;
+    text-align: left;
+    font: 18px;
+}
+
+#search {
+    color: #A4A400;
+}
+
+#comments {
+    background-color: #FFFFA8;
+    font-style: italic;
+}
+
+span {
+    font-weight: bold;
+}

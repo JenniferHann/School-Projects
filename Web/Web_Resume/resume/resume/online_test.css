@@ -1,0 +1,55 @@
+﻿body {
+}
+
+h1 {
+    font-family: 'Bookman Old Style';
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Bookman Old Style';
+    text-align: center;
+}
+
+body {
+    font-family: 'Bookman Old Style';
+    background-color: #fff9f4;
+}
+
+#legend {
+    font-weight: bold;
+}
+
+#fieldset {
+    background-color: #ffebdd;
+    margin: auto;
+    width: 60%;
+}
+
+#index {
+    margin: auto;
+}
+
+#pwd {
+    padding: 12px;
+    margin: 5px;
+}
+
+#content fieldset {
+    margin: auto;
+    width: 40%;
+    text-align: center;
+    background-color: #ffebdd;
+}
+
+#submit {
+    text-align: center;
+}
+
+#clear {
+    text-align: center;
+}

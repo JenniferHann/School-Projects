@@ -1,0 +1,96 @@
+﻿<head>
+    <title>
+        Introduction to Computing Exam
+    </title>
+    <link href="~/online_test.css" rel="stylesheet" />
+</head>
+
+@{
+    if (!IsPost)
+    {
+        <h1> You need to fill up the for first.Please click on the link below.</h1>
+        <a href="~/index.html"> Log In Page </a>
+    }
+    else
+    {
+        //User Credentials
+        string UserName = Request.Form["UserName"];
+        string pwd = Request.Form["password"];
+        if (!IsPost)
+        {
+            <h1>You need to fill up the for first.Please click on the link below.</h1>
+            <h3><a href="~/index.html"> Log In </a></h3>
+        }
+        else
+        {
+            if (UserName == "test" && pwd == "1234")
+            {
+                <h1>Introduction to Computing Exam</h1>
+                <h2>Passing grade is 50%</h2>
+                <form action="results.cshtml" method="post">
+                    <div>
+                        <fieldset id="fieldset">
+                            <legend id="legend">Multiple Choice Questions</legend>
+                            <div>
+                                <label>How many bits are there in one byte? <bold>(2 Points)</bold></label><br />
+                                <input type="radio" id="many" name="many" value="6" /> <text>6</text><br />
+                                <input type="radio" id="many" name="many" value="7" /> <text>7</text><br />
+                                <input type="radio" id="many" name="many" value="8" /> <text>8</text><br />
+                                <input type="radio" id="many" name="many" value="12" /> <text>12</text><br />
+                            </div>
+                            <br />
+                            <div>
+                                <label>What are the two main parts on an operating system? <bold>(2 Points)</bold></label><br />
+                                <input type="radio" id="OS" name="OS" value="ShellAndKernal" /><text>Shell and Kernal</text><br />
+                                <input type="radio" id="OS" name="OS" value="GUIAndCLI" /><text>GUI and CLI</text><br />
+                                <input type="radio" id="OS" name="OS" value="SystemAndApplication" /><text>System and Application</text><br />
+                                <input type="radio" id="OS" name="OS" value="None" /><text>None of the above.</text><br />
+                            </div>
+                        </fieldset>
+                        <br />
+                        <fieldset id="fieldset">
+                            <legend id="legend">True or False</legend>
+                            <div>
+                                <label>HTTP stands for hyper text transfer protocol.<bold>(1 Point)</bold></label>
+                                <select name="HTTP" id="HTTP">
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select><br />
+                                <label>Open Source Software can ge modified by anyone and are offered for an extra charge. <bold>(1 Point)</bold></label>
+                                <select name="OpenSource">
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <br />
+                        <fieldset id="fieldset">
+                            <legend id="legend">Choose all that apply</legend>
+                            <label>The four essential components that make up the World Wide Web are: <bold>(2 Points)</bold></label><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="HTML" /><text>HTML</text><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="Cloud" /><text>Cloud</text><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="Browser" /><text>Browser</text><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="Web Server" /><text>Web Server</text><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="HTTP" /><text>HTTP</text><br />
+                            <input type="checkbox" name="WWW" id="WWW" value="FTP" /><text>FTP</text><br />
+                        </fieldset>
+                        <br />
+                        <fieldset id="fieldset">
+                            <legend id="legend">Fill in the blanks</legend>
+                            <text>Binary value "<bold>1101</bold>" equals <input type="number" name="Binary" id="Binary" /> in decimal and <input type="text" name="Hexa" id="Hexa" /> in hexadecimal. <bold>(2 Points)</bold></text>
+                        </fieldset>
+                        <br />
+                        <input type="submit" value="Submit Answer" id="submit" />
+                        <input type="reset" value="Clear Answer" id="clear" />
+                    </div>
+                </form>
+            }
+            else
+            {
+                <h1> Wrong user name or password. Please try again </h1>
+                <h3><a href="~/index.html"> Log In Page</a></h3>
+            }
+        }
+    }
+}
+

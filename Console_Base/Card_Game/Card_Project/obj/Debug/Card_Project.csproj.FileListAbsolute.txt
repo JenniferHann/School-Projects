@@ -1,0 +1,14 @@
+C:\Users\1867219\source\repos\Card_Project\Card_Project\bin\Debug\Card_Project.exe.config
+C:\Users\1867219\source\repos\Card_Project\Card_Project\bin\Debug\Card_Project.exe
+C:\Users\1867219\source\repos\Card_Project\Card_Project\bin\Debug\Card_Project.pdb
+C:\Users\1867219\source\repos\Card_Project\Card_Project\obj\Debug\Card_Project.csprojAssemblyReference.cache
+C:\Users\1867219\source\repos\Card_Project\Card_Project\obj\Debug\Card_Project.csproj.CoreCompileInputs.cache
+C:\Users\1867219\source\repos\Card_Project\Card_Project\obj\Debug\Card_Project.exe
+C:\Users\1867219\source\repos\Card_Project\Card_Project\obj\Debug\Card_Project.pdb
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\bin\Debug\Card_Project.exe.config
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\bin\Debug\Card_Project.exe
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\bin\Debug\Card_Project.pdb
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\obj\Debug\Card_Project.csprojAssemblyReference.cache
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\obj\Debug\Card_Project.csproj.CoreCompileInputs.cache
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\obj\Debug\Card_Project.exe
+C:\Users\sh200\Downloads\Card_Project (1)\Card_Project\Card_Project\obj\Debug\Card_Project.pdb

@@ -1,0 +1,170 @@
+﻿<Window x:Class="Budget.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Budget"
+        xmlns:self ="clr-namespace:Budget"
+        mc:Ignorable="d"
+        Title="Home Budget" Closing="MainWindow_Closing">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="self:CustomCommands.Exit" CanExecute="ExitBinding_CanExecute" Executed="ExitBinding_Executed"/>
+        <CommandBinding Command="self:CustomCommands.Modify" CanExecute="ModifyBinding_CanExecute" Executed="ModifyBinding_Executed"/>
+        <CommandBinding Command="self:CustomCommands.New" CanExecute="NewBinding_CanExecute" Executed="NewBinding_Executed"/>
+        <CommandBinding Command="self:CustomCommands.Open" CanExecute="OpenBinding_CanExecute" Executed="OpenBinding_Executed"/>
+        <CommandBinding Command="self:CustomCommands.Save" CanExecute="SaveBinding_CanExecute" Executed="SaveBinding_Executed"/>
+    </Window.CommandBindings>
+
+    <Window.Resources>
+        <Style x:Key="Image" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <DockPanel>
+        <!-- Menu -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Name="menuNew"  Command="self:CustomCommands.New">
+                    <!--Click="menuNew_Click"-->
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\NewFile_16x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Open" Name="menuOpen"  Command="self:CustomCommands.Open">
+                    <!--Click="menuOpen_Click"-->
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\OpenfileDialog_grey_16x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save" Name="menuSave" Command="self:CustomCommands.Save">
+                    <!--Click="menuSave_Click" -->
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\Save_16x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_SaveAs" Name="menuSaveAs" Click="menuSaveAs_Click">
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\SaveStatusBar1_16x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <Separator />
+                <MenuItem Header="_Exit" Name="menuExit"  Command="self:CustomCommands.Exit">
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\Exit_16x.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Modify Selected Item" Name="modifySelectedItem" Command="self:CustomCommands.Modify">
+                    <MenuItem.Icon>
+                        <Image Source=".\Images\EditTableRow_16x.png" Style="{DynamicResource Image}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <!--ToolBar-->
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button   ToolTip="Create a new expense form" Command="self:CustomCommands.New">
+                    <!--Click="menuNew_Click"-->
+                    <Image Source=".\Images\NewFile_16x.png"/>
+                </Button>
+                <Button  ToolTip="Open an existing expense form" Command="self:CustomCommands.Open">
+                    <!--Click="menuOpen_Click"-->
+                    <Image Source=".\Images\OpenfileDialog_grey_16x.png"/>
+                </Button>
+                <Button  Name="toolBarSave" ToolTip="Save the expense form" Command="self:CustomCommands.Save">
+                    <!--Click="menuSave_Click"-->
+                    <Image Source=".\Images\Save_16x.png" Style="{DynamicResource Image}"/>
+                </Button>
+                <Button Click="menuSaveAs_Click" Name="toolBarSaveAs" ToolTip="Save the expense form to a specific location">
+                    <Image Source=".\Images\SaveStatusBar1_16x.png" Style="{DynamicResource Image}"/>
+                </Button>
+                <Button Command="self:CustomCommands.Modify" Name="toolBarModify" ToolTip="Modify selection in the data grid" >
+                    <Image Source=".\Images\EditTableRow_16x.png" Style="{DynamicResource Image}"/>
+                </Button>
+                <Button Command="self:CustomCommands.Exit" ToolTip="Exit the Home Budget Expense Window">
+                    <Image Source=".\Images\Exit_16x.png"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <!-- Status Panel -->
+        <StatusBar DockPanel.Dock="Bottom" Background="Beige" Margin="1">
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock Name="txtSavedStatus" Margin="0,0,10,0" TextAlignment="Right"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock>Budget File:</TextBlock>
+                    <TextBlock Name="txbFileName" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <Grid>
+
+            <!-- Generic Layout -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Control Panel -->
+            <StackPanel Name="DisplayOptions" Margin="10">
+
+                <TextBlock Margin="0,10" FontSize="14">Display Options</TextBlock>
+
+                <!-- Filter -->
+                <GroupBox Header="Filter">
+                    <StackPanel>
+                        <TextBlock Margin="0,5,0,0" >Start Date</TextBlock>
+                        <DatePicker SelectedDateChanged="dpStartDate_SelectedDateChanged" Margin="0,0,0,5" Name="dpStartDate"></DatePicker>
+                        <TextBlock Margin="0,5,0,0" >End Date</TextBlock>
+                        <DatePicker SelectedDateChanged="dpEndDate_SelectedDateChanged" Margin="0,0,0,5" Name="dpEndDate"></DatePicker>
+
+                        <CheckBox Margin="0,5,0,0" Click="cbFilterCategories_Click" Name="cbFilterCategories">Filter By Category?</CheckBox>
+                        <ComboBox SelectionChanged="cmbCategories_SelectionChanged" Margin="0,0,0,5" Name="cmbCategories"></ComboBox>
+
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Summary -->
+                <GroupBox Margin="0,5" Header="Summary">
+                    <StackPanel>
+                        <CheckBox Click="cbByMonth_Click" Margin="0,5,0,0" Name="cbByMonth">By Month</CheckBox>
+                        <CheckBox Click="cbByCategory_Click" Margin="0,5,0,0" Name="cbByCategory">By Category</CheckBox>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Buttons -->
+                <Button Click="btnAddExpense_Click" Name="btnAddExpense" Margin="0,25">Add Expense</Button>
+
+            </StackPanel>
+
+            <!-- Budget Area -->
+            <Border Grid.Column="1" Grid.Row="1" Margin="2" BorderBrush="Black" BorderThickness="2">
+                <DataGrid  FrozenColumnCount="1" Name="dataBudget" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dataBudget_SelectionChanged" MouseDoubleClick="dataBudget_MouseDoubleClick">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Delete" Click="DeleteExpense_Click"/>
+                            <MenuItem Header="Modify" Command="self:CustomCommands.Modify"/>
+                            <Separator/>
+                            <MenuItem Header="Cancel"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+            </Border>
+
+        </Grid>
+    </DockPanel>
+
+</Window>

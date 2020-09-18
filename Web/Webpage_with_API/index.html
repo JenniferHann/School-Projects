@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceX Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <header>
+        <h1>SpaceX Stats</h1>
+    </header>
+    <main>
+        <section data-tab-name="Upcomings Launch" class="button">
+            <h2>Upcoming Launch</h2>
+            <div id="upcomingLaunch">
+                    <table id="ULtable">
+                        <tr>
+                            <th>Mission Name</th>
+                            <th>Launch Date</th>
+                            <th>Rocket Name</th>
+                            <th>Launch Site</th>
+                        </tr>
+                    </table>
+            </div>
+        </section>
+
+        <section data-tab-name="Past Launch" class="button">
+            <h2>Past Launch</h2>
+            <label for="PL-filter">
+                <input type="number" id="PL-filter">
+            </label>
+            <button id="PL-button" onclick="displayPL()">Submit</button>
+            <div id="pastLaunch">
+                <table >
+                    <tr>
+                        <th>Mission Name</th>
+                        <th>Launch Date</th>
+                        <th>Rocket Name</th>
+                        <th>Details</th>
+                        <th>Launch Site</th>
+                        <th>Launch Success</th>
+                    </tr>
+                    <tbody id="PLtable">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section data-tab-name="Rockets" class="button">
+            <h2>Rockets</h2>
+            <div id="rockets">
+                <div class="containerRockets">
+                    <button onclick="rocket1()" id="b1">
+                            <img id="r1" height="350" width="500" alt="picture of Falcon 1" src="https://www.spacex.com/sites/spacex/files/styles/media_gallery_large/public/2009_-_01_liftoff_south_full_wide_ro8a1280_edit.jpg?itok=8loiSGt1"/>
+                            <div class="text" id="text1" onclick="rocket1()">
+                                <p id="rInfo1"></p>
+                            </div>
+                    </button>
+                </div>
+
+                <div class="containerRockets" > 
+                    <button onclick="rocket2()" id="b2">
+                        <img id="r2" height="350" width="500" alt="picture of Falcon 9" src="https://farm1.staticflickr.com/623/23660653516_5b6cb301d1_b.jpg"/>
+                        <div class="text" id="text2" onclick="rocket2()">
+                            <p id="rInfo2">Falcon 9</p> 
+                        </div>
+                    </button>
+                    
+                </div>
+
+                <div class="containerRockets"> 
+                    <button onclick="rocket3()" id="b3">
+                            <img id="r3" height="350" width="500" alt="picture of Falcon Heavy" src="https://farm5.staticflickr.com/4645/38583830575_3f0f7215e6_b.jpg"/>
+                            <div class="text" id="text3" onclick="rocket3()">
+                                    <p id="rInfo3">Falcon Heavy</p>
+                            </div>
+                    </button>
+                </div>
+                
+                <div class="containerRockets" data-tab-name="rocket4">
+                    <button onclick="rocket4()" id="b4">
+                            <img id="r4" height="350" width="500" alt="picture of StarShip" src="https://www.spacex.com/sites/spacex/files/starship_mk1_night_v2.jpg"/>
+                            <div class="text" id="text4" onclick="rocket4()">
+                                <p id="rInfo4">Starship</p>
+                            </div>
+                    </button>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="main.js"></script>
+    
+</body>
+</html>

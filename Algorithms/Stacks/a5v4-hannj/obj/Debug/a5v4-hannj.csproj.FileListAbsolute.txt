@@ -1,0 +1,7 @@
+C:\Users\1867219\source\repos\a5v4-hannj\bin\Debug\a5v4-hannj.exe.config
+C:\Users\1867219\source\repos\a5v4-hannj\bin\Debug\a5v4-hannj.exe
+C:\Users\1867219\source\repos\a5v4-hannj\bin\Debug\a5v4-hannj.pdb
+C:\Users\1867219\source\repos\a5v4-hannj\obj\Debug\a5v4-hannj.csprojAssemblyReference.cache
+C:\Users\1867219\source\repos\a5v4-hannj\obj\Debug\a5v4-hannj.csproj.CoreCompileInputs.cache
+C:\Users\1867219\source\repos\a5v4-hannj\obj\Debug\a5v4-hannj.exe
+C:\Users\1867219\source\repos\a5v4-hannj\obj\Debug\a5v4-hannj.pdb

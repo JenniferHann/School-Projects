@@ -1,0 +1,33 @@
+p, h1, h2, #gameName {
+    text-align: center;
+}
+
+body{
+    font-family: 'Allerta Stencil';
+    color: whitesmoke;
+    background-color: #272727;
+}
+
+a{
+    color: whitesmoke;
+    font-size: 35px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#agent{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+canvas {
+    background-color: rgb(255, 255, 255);
+
+}
+
+#gameName {
+    font-size: 55px;
+}
