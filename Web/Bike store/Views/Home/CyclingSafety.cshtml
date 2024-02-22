@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Cycling Safety";
+}
+
+<style>
+    p {
+        font-size: x-large;
+        margin-right: 1em;
+    }
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">Stay Safe on the Road with our 10 Cycling Safety Tips!</h1>
+<br></br>
+<hr>
+<br></br>
+
+@{
+    string[] headers = {
+        "1. Never bike without a helmet!",
+        "2. Always have a tire kit.",
+        "3. Always be aware of your surroundings.",
+        "4. At night, make sure you are very clearly visible to everyone at all times.",
+        "5. Never bike while listening to digital media.",
+        "6. Make your intentions clear.",
+        "7. Familiarize yourself with the cycling laws of your region.",
+        "8. Stay hydrated and well nourished.",
+        "9. Make sure you are comfortable on your bike.",
+        "10. Plan your trip, prepare accordingly."};
+
+    string[] content = {
+        "This may seem like a no brainer, but did you know that you GREATLY reduce your chances of surviving a fatal bike accident when you're not wearing a helmet? Statistics aren't necessary to understand this, the fact of the matter is, if you fall off your bikes at high speeds and hit your head on concrete without a helmet, you will be seriously hurt. Wearing a helmet will greatly reduce the damage done, end of story.",
+        "Flat tires on a bike are almost as annoying as flat tires on a car. If you get a flat tire on your car, you just wait in your car for someone top come fix you up. This is also true on bikes, but it doesn't have to be. With a tire kit, you'll be back on the road within minutes! It'll be like nothing happened!",
+        "Chances of getting hit by a car/truck while on a bike are much larger than those while walking. The CAA says that cyclists are more likely to be injured at intersections/traffic control areas. Make sure you're biking in the appropriate places and you know what potential dangers are around you at all times.",
+        "According to the CAA, a large portion of bike-related deaths happen at night or in poorly lit areas. Making yourself visible by attatching lights to your bike/bag/clothes and wearing reflective clothing will greatly reduce your chances of becoming roadkill. Did you know it is illegal to not have the proper reflectors on your bike in Canada?",
+        "When you have earphones in, you greatly limit your sense of hearing and you can become distracted. Distractions on the road can lead to fatal accidents and if you're listening to music, you won't be able to properly hear the 18 wheeler speeding up towards you. Newer earphones have built-microphones that allow you te hear your surroundings while listening to audio, which can be useful. That being said, not wearing earphones at all would be best.",
+        "Communication is key when it comes to cycling. Much like driving, you should make your route clear to other travellers, be it cars cyclists or otherwise. Use signaling to let others go where you're going and avoid potential accidents. This is especially important as most serious bike accidents are caused by larger motorized vehicles.",
+        "Drivers are not the only ones who can get fined while on the road. Cyclists can also get fined for things such as speeding and burning stop signs. It's easy to assume most of the road laws don't apply to cyclists, but the reality is you won't know for sure until you check it out for yourself. Some of these fines vary from region to region so it wouldn't hurt to do a quick research to double check the laws that apply to you.",
+        "Cycling can be a physically demanding exercise, if you get critically dehydrated or hungry mid-trip, you can get seriously injured. You can pass out from not eating/drinking enough. Imagine getting a seriously painful cramp while biking up a mountain, I can assure you it would not be a pleasant trip down. It won't hurt to pack some snacks along with a water bottle in case of emergency.",
+        "Ensure your bike is well adjusted to you. Nothing should feel unaturally sore while riding your bike. The big thing most people forget to adjust would have to be the bike seat height. To see if your seat is properly adjusted, check how much your legs get extended while pedaling. If at any point your legs are completely extended, your seat is too high. If your legs feel cramped up, it is too low.  ",
+        "Ensure you are properly equipped for your trip. If you are planning a long overnight trip, pack extra food/water and figure out how often you will stop and where. Also try to plan your route, you don't want to bike somewhere just to find out there are no bike paths 3 hours later."};
+
+    string[] images = {
+        "helmet.jpg",
+        "tire.jpg",
+        "alert.jpg",
+        "night.jpg",
+        "earphones.jpg",
+        "signal.jpg",
+        "sign.jpg",
+        "water.jpg",
+        "seat.jpg",
+        "plan.jpg"};
+
+    string[] links = {
+        "https://unsplash.com/@waldemarbrandt67w",
+        "https://unsplash.com/@hcxcy",
+        "https://unsplash.com/@nairdasemaj",
+        "https://unsplash.com/@alwerdani",
+        "https://unsplash.com/@ving_n",
+        "https://unsplash.com/@adliwahid",
+        "https://unsplash.com/@garybpt",
+        "https://unsplash.com/@bannon15",
+        "https://unsplash.com/@tower_electric_bikes",
+        "https://unsplash.com/@anniespratt"};
+
+    string[] authorNames = {
+        "Waldemar Brandt",
+        "Vlad Smolyakov",
+        "Adrian Williams",
+        "Ahmed Alwerdani",
+        "Ving N",
+        "Adli Wahid",
+        "Gary Butterfield",
+        "Bannon Morrisey",
+        "Tower Electric Bikes",
+        "Annie Spratt"};
+
+    for (int i = 0; i < headers.Length; i++)
+    {
+    <div class="text-center">
+        <h2>@headers[i]</h2>
+        <br></br>
+        <div class="content-container">
+            <p class="text-justify text">@content[i]</p>
+            <div class="grid-image">
+                <img class="img" src="~/images/CyclingSafety/@images[i]" alt="Error: image not found." id="contentImage" />
+            </div>
+        </div>
+        @{if (i == 8)
+            {
+                <br>
+                <a target="_blank" href="">Don't have a bike seat? Browse ours!</a>
+                <br>
+                }
+            if (i == 0)
+            {
+                <br>
+                <a target="_blank" href="">Don't have a helmet? Browse ours!</a>
+                <br>            
+                }
+        }
+        @*<div class="text-right"><span>Photo by <a href="@links[i]">@authorNames[i]</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+    </div>
+
+<br></br>
+<hr>
+<br></br>
+    }
+
+<div class="text-center">
+    <h1>Source</h1>
+    <br></br>
+    <p>The statistics on our site were provided by the <a target="_blank" href="https://www.caa.ca/bike/statistics">CAA</a></p>
+    <br></br>
+    <a target="_blank" href="https://www.caa.ca/bike/statistics"><img class="img" src="~/images/CyclingSafety/caa.png" alt="Error: image not found." width="600px" height="400px" id="contentImage" /></a>
+    <br></br>
+</div>
+
+
+}
+
+

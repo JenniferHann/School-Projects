@@ -1,0 +1,63 @@
+﻿@using NoNameBikes.Models
+@model Dictionary<Product, int>
+
+@{
+    ViewData["Title"] = "Mon panier";
+
+    double totalCartPrice = 0;
+}
+
+@if (Model == null)
+{
+    <h1>Votre panier est vide!</h1>
+    <p>Parcourez notre site pour trouver quelque chose qui vous intéresse.</p>
+}
+else
+{
+    <h1>Mon Panier</h1>
+
+
+    <table class="table">
+        <tr>
+            <th>Nom</th>
+            <th>Couleur</th>
+            <th>Taille</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Sous-total</th>
+            <th>Retirer</th>
+        </tr>
+
+        @foreach (KeyValuePair<Product, int> item in Model)
+        {
+            double subtotal = (double)item.Key.ListPrice * item.Value; //subtotal for item
+            <tr>
+                <td>@item.Key.Name</td>
+                <td>@item.Key.Color</td>
+                <td>@item.Key.Size</td>
+                <td>@item.Key.ListPrice.ToString("c")</td>
+                <td>
+                    <form asp-action="UpdateQuantityInCart">
+                        <input type="hidden" name="ProductId" value="@item.Key.ProductId" />
+                        <input type="text" id="quantity" name="Quantity" value="@item.Value" size="1" />
+                        <input class="btn btn-warning" type="submit" value="Update Quantity" />
+                    </form>
+                </td>
+                <td>@subtotal.ToString("c")</td>
+                <td>
+                    <form asp-action="RemoveItemFromCart">
+                        <input type="hidden" name="ProductId" value="@item.Key.ProductId" />
+                        <input class="btn btn-danger" type="submit" value="Remove" />
+                    </form>
+                </td>
+            </tr>
+            //calculate total cart price
+            totalCartPrice += subtotal;
+        }
+    </table>
+    <form asp-action="Checkout">
+        <h4>Total: @totalCartPrice.ToString("c")</h4>
+        <br />
+        <input class="btn btn-primary" type="submit" value="Checkout" />
+    </form>
+}

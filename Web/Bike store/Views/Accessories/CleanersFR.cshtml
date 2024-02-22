@@ -1,0 +1,128 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<NoNameBikes.Models.AccessoriesListModel>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Nettoyeurs";
+}
+
+<style>
+    .paging {
+        padding-left: 50%;
+    }
+
+    image {
+        padding: 15px;
+    }
+
+    a {
+        color: black;
+    }
+
+        a:hover, a:active {
+            color: white;
+            background-color: #bfbfbf;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+    #actionLink {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        font-size: 18px;
+        padding: 10px;
+        margin: 15px;
+        text-align: center;
+    }
+
+    #bikeModel {
+        border-style: solid;
+        border-color: black;
+        display: table;
+        padding: 30px;
+        margin: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .sale {
+        color: red;
+        margin: 0px;
+    }
+
+    .SalePrice {
+        font-weight: bold;
+    }
+
+    .discount {
+        font-size: 15px;
+    }
+</style>
+
+<h1>Nettoyeurs</h1>
+
+<br />
+
+<table id="sorts">
+    <tr>
+        <td>@Html.ActionLink("Nom Décroissant", null, new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Nom Croissant", null, new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Prix Décroissant", null, new { sortOrder = ViewBag.PriceSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Prix Croissant", null, new { sortOrder = ViewBag.PriceSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Ancien Au Récent", null, new { sortOrder = ViewBag.SellDateSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Récent Au Ancient", null, new { sortOrder = ViewBag.SellDateSortAParm }, new { id = "sortAsc" })</td>
+    </tr>
+</table>
+
+<br />
+
+@foreach (var item in Model)
+{
+    <div id="bikeModel">
+        <a href="@Url.Action("DetailsFR", "Accessories", new { id = item.ProductModelID })">
+            @{
+                var base64 = Convert.ToBase64String(item.Photo);
+                if (base64 == "R0lGODlhUAAxAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgICAgMDAwP8AAAD/AP//AAAA//8A/wD//////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAZgAAmQAAzAAA/wAzAAAzMwAzZgAzmQAzzAAz/wBmAABmMwBmZgBmmQBmzABm/wCZAACZMwCZZgCZmQCZzACZ/wDMAADMMwDMZgDMmQDMzADM/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMzADMzMzMzZjMzmTMzzDMz/zNmADNmMzNmZjNmmTNmzDNm/zOZADOZMzOZZjOZmTOZzDOZ/zPMADPMMzPMZjPMmTPMzDPM/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YzAGYzM2YzZmYzmWYzzGYz/2ZmAGZmM2ZmZmZmmWZmzGZm/2aZAGaZM2aZZmaZmWaZzGaZ/2bMAGbMM2bMZmbMmWbMzGbM/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5kzAJkzM5kzZpkzmZkzzJkz/5lmAJlmM5lmZplmmZlmzJlm/5mZAJmZM5mZZpmZmZmZzJmZ/5nMAJnMM5nMZpnMmZnMzJnM/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wzAMwzM8wzZswzmcwzzMwz/8xmAMxmM8xmZsxmmcxmzMxm/8yZAMyZM8yZZsyZmcyZzMyZ/8zMAMzMM8zMZszMmczMzMzM/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8zAP8zM/8zZv8zmf8zzP8z//9mAP9mM/9mZv9mmf9mzP9m//+ZAP+ZM/+ZZv+Zmf+ZzP+Z///MAP/MM//MZv/Mmf/MzP/M////AP//M///Zv//mf//zP///yH5BAEAABAALAAAAABQADEAAAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXJkRBYqBLhfGZPnQ5ct/MxPmpMnQpsCZNm/CfBnTZ86gQ3HeRMoRadGlQpUqJfoUZ9KnVH9GxVhUKtCoVaWKnZrVK9SmVMPuVHvWrFisPjd+LbuW7tmvb8t6nJuXIFutfbH2lSt07ta/eeOy3clTYuGtjS8yjUy5suXLmDHHdRjWIGPGIjdDBA3YL2SQVY+mvQsVL16yqLOqfuyWtlHZbTv+nY176G67H38DTs068GrSkoMSN+62+fKQqrW2Xe6aem7CSaf6fq7ceevTmcOLEh9Pvrz58+jTq1/Pvr379+8DAgA7")
+                {
+                    <img src="~/images/NoImageFR.PNG" alt="Image non disponible" width="500px" height="300px" />
+                }
+                else
+                {
+                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                    <img src='@imgsrc' alt="Image du produit" width="500px" height="300px" />
+                }
+
+                string name = item.ProductModel.Replace("Bike Wash", "Lavage de vélo");
+            }
+            <p id="actionLink">@Html.ActionLink(name, "Details", new { id = item.ProductModelID })</p>
+            <p>@item.Description</p>
+            <p>$@item.Price.ToString().Substring(0, item.Price.ToString().Length - 2)</p>
+        </a>
+    </div>
+}
+
+<nav class="paging">
+    <vc:pager paging-list="@Model" />
+</nav>

@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Returns, Exchanges and Refunds";
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+        font-size: x-large;
+    }
+
+    .text {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+
+    .introText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: center;
+    }
+
+    .content-container li {
+        font-size: x-large;
+        margin-bottom: 0.25em;
+        margin-right: 1em;
+        text-align: left;
+    }
+
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">@ViewData["Title"]</h1>
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Customer satisfaction is our top priority.</h2>
+    <br>
+    <br>
+    <div class="content-container">
+        <p class="text">Our flexible policy on returns allows us to put the focus on the needs and happiness of the customer. We belive you should feel satisfied with our services, even if the product does not meet your expectations on arrival. Which is why we offer free returns, full refunds and exchanges on any request placed within 7 days of the delivery that meets at least one of the conditions below.</p>
+        <div class="grid-image">
+            <img class="img" src="~/images/Returns/happyBikers.jpg" alt="Error: image not found." id="contentImage" />
+        </div>
+    </div>
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/ocen">Coen van de Broek</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+@* https://unsplash.com/photos/OFyh9TpMyM8 *@
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Conditions</h2>
+    <br><p class="introText">Please note: to be eligible for any type of return, you must send us a request within 7 days of recieving your item.</p></br>
+    <div class="content-container">
+        <ul class="text">
+            <li>Customer deems item description inaccurate.</li>
+            <li>Customer recieved the wrong item.</li>
+            <li>Item is no longer needed.</li>
+            <li>Item is incompatible or not useful to the customer.</li>
+            <li>Item arrived defective or damaged.</li>
+            <li>Item arrived with missing parts.</li>
+            <li>Item hasn't arrived after a month.</li>
+            <li>Item is stolen on delivery (proof required).</li>
+        </ul>
+        <div class="grid-image">
+            <img class="img" src="~/images/Returns/package.jpg" alt="Error: image not found." id="contentImage" />
+        </div>
+    </div>
+    @*<div class="text-right"><span>Photo by <a href="https://unsplash.com/benchaccounting">Bench Accounting</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>How to request an Exchange/Return/Refund?</h2>
+    <br></br>
+    <div class="content-container">
+        <p class="text">Once you know that your request meets one of the above conditions and that your return window has not yet expired, simply send us an email and we will walk you through the process from there. Your email should include your Order ID (found on the reciept), the name of the product and the reason you wish to return it.</p>
+        <div class="grid-image">
+            <img class="img" src="~/images/Returns/email.jpg" alt="Error: image not found." id="contentImage" />
+        </div>
+    </div>
+    @*<div class="text-right"><span>Photo by <a href="https://unsplash.com/austindistel">Austin Distel</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Still have questions? <a asp-controller="ContactUs" asp-action="Index">Contact Us!</a></h2>
+</div>
+
+<br></br>
+

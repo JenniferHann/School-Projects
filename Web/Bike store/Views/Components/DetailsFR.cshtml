@@ -1,0 +1,160 @@
+﻿@model IEnumerable<NoNameBikes.Models.Product>
+
+@{
+    ViewData["Title"] = "Détails";
+    Product selectedProduct = Model.First();
+}
+
+<style>
+    #grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "pic name";
+        width: 1000px;
+        grid-gap: 20px;
+    }
+
+    #namedesc {
+        grid-area: name;
+    }
+
+    #pic {
+        grid-area: pic;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+    .sale {
+        color: red;
+        margin: 0px;
+    }
+
+    .SalePrice {
+        font-weight: bold;
+    }
+
+    .discount {
+        font-size: 15px;
+    }
+</style>
+
+<br />
+<br />
+<div id="grid">
+    @{
+        var base64 = Convert.ToBase64String(selectedProduct.ThumbNailPhoto);
+        if (base64 == "R0lGODlhUAAxAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgICAgMDAwP8AAAD/AP//AAAA//8A/wD//////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAZgAAmQAAzAAA/wAzAAAzMwAzZgAzmQAzzAAz/wBmAABmMwBmZgBmmQBmzABm/wCZAACZMwCZZgCZmQCZzACZ/wDMAADMMwDMZgDMmQDMzADM/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMzADMzMzMzZjMzmTMzzDMz/zNmADNmMzNmZjNmmTNmzDNm/zOZADOZMzOZZjOZmTOZzDOZ/zPMADPMMzPMZjPMmTPMzDPM/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YzAGYzM2YzZmYzmWYzzGYz/2ZmAGZmM2ZmZmZmmWZmzGZm/2aZAGaZM2aZZmaZmWaZzGaZ/2bMAGbMM2bMZmbMmWbMzGbM/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5kzAJkzM5kzZpkzmZkzzJkz/5lmAJlmM5lmZplmmZlmzJlm/5mZAJmZM5mZZpmZmZmZzJmZ/5nMAJnMM5nMZpnMmZnMzJnM/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wzAMwzM8wzZswzmcwzzMwz/8xmAMxmM8xmZsxmmcxmzMxm/8yZAMyZM8yZZsyZmcyZzMyZ/8zMAMzMM8zMZszMmczMzMzM/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8zAP8zM/8zZv8zmf8zzP8z//9mAP9mM/9mZv9mmf9mzP9m//+ZAP+ZM/+ZZv+Zmf+ZzP+Z///MAP/MM//MZv/Mmf/MzP/M////AP//M///Zv//mf//zP///yH5BAEAABAALAAAAABQADEAAAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXJkRBYqBLhfGZPnQ5ct/MxPmpMnQpsCZNm/CfBnTZ86gQ3HeRMoRadGlQpUqJfoUZ9KnVH9GxVhUKtCoVaWKnZrVK9SmVMPuVHvWrFisPjd+LbuW7tmvb8t6nJuXIFutfbH2lSt07ta/eeOy3clTYuGtjS8yjUy5suXLmDHHdRjWIGPGIjdDBA3YL2SQVY+mvQsVL16yqLOqfuyWtlHZbTv+nY176G67H38DTs068GrSkoMSN+62+fKQqrW2Xe6aem7CSaf6fq7ceevTmcOLEh9Pvrz58+jTq1/Pvr379+8DAgA7")
+        {
+            <div id="pic"><img src="~/images/NoImageFR.PNG" alt="Image non disponible" /></div>
+        }
+        else
+        {
+            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+            <div id="pic"><img src='@imgsrc' alt="image du produit" /></div>
+        }
+    }
+    <form asp-action="AddToCartFR" asp-controller="Home">
+        <div id="namedesc">
+            @{ 
+                string name = "";
+                if(selectedProduct.Name.Contains(" Bottom Bracket"))
+                {
+                    name = selectedProduct.Name.Replace(" Bottom Bracket", " Boîtiers de pédalier");
+                }
+                if (selectedProduct.Name == "Front Brakes")
+                {
+                    name = "Freins avant";
+                }
+                if (selectedProduct.Name == "Chain")
+                {
+                    name = "Chaînes";
+                }
+                if (selectedProduct.Name.Contains(" Crankset"))
+                    name = selectedProduct.Name.Replace(" Crankset", " Pédaliers");
+                if (selectedProduct.Name == "Front Derailleur")
+                {
+                    name = "Dérailleurs avant";
+                }
+                else if (selectedProduct.Name == "Rear Derailleur")
+                {
+                    name = "Dérailleurs arrière";
+                }
+                if (selectedProduct.Name.Contains("Road Handlebars"))
+                {
+                    name = " Guidons de route";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                else if (selectedProduct.Name.Contains("Touring Handlebars"))
+                {
+                    name = " Guidons de randonné";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                else if (selectedProduct.Name.Contains("Mountain Handlebars"))
+                {
+                    name = " Guidons de montagne";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                if (selectedProduct.Name.Contains(" Mountain Frame"))
+                    name = selectedProduct.Name.Replace(" Mountain Frame", " Cadres de montagne");
+                if (selectedProduct.Name.Contains("Road Pedal"))
+                {
+                    name = " Pédales de route";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                else if (selectedProduct.Name.Contains("Touring Pedal"))
+                {
+                    name = " Pédales de randonné";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                else if (selectedProduct.Name.Contains("Mountain Pedal"))
+                {
+                    name = " Pédales de montagne";
+                    name = selectedProduct.Name.Split(' ')[0] + name;
+                }
+                if (selectedProduct.Name.Contains(" Road Frame"))
+                    name = selectedProduct.Name.Replace(" Road Frame", " Cadres de route");
+                if (selectedProduct.Name.Contains(" Mountain Seat/Saddle"))
+                    name = selectedProduct.Name.Replace(" Mountain Seat/Saddle", " Selles de montagne");
+                if (selectedProduct.Name.Contains(" Road Seat/Saddle"))
+                    name = selectedProduct.Name.Replace(" Road Seat/Saddle", " Selles de route");
+                if (selectedProduct.Name.Contains(" Touring Seat/Saddle"))
+                    name = selectedProduct.Name.Replace(" Touring Seat/Saddle", " Selles de randonné");
+                if (selectedProduct.Name.Contains(" Touring Frame"))
+                    name = selectedProduct.Name.Replace(" Touring Frame", " Cadres de randonné");
+            }
+            <h3>@name</h3>
+            <p>@ViewData["description"]</p>
+            <hr />
+            Prix: @{
+                if (selectedProduct.SalePrice != null)
+                {
+                    if (DateTime.Compare((DateTime)selectedProduct.SaleEndDate, DateTime.Now) > 0)
+                    {
+                        decimal discount = selectedProduct.ListPrice - (decimal)selectedProduct.SalePrice;
+                        <strike>@Math.Round(selectedProduct.ListPrice, 2)$</strike> <label class="sale discount">-@discount.ToString().Substring(0, discount.ToString().Length - 2)$</label>
+
+                        <p class="sale SalePrice">  @selectedProduct.SalePrice.ToString().Substring(0, selectedProduct.SalePrice.ToString().Length - 2)$</p>
+                    }
+                    else
+                    {
+                        <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                    }
+
+                }
+                else
+                {
+                    <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                }
+            }
+        </div>
+        <input type="hidden" name="@nameof(selectedProduct.ProductModelId)" value="@selectedProduct.ProductModelId" />
+        <input class="btn btn-primary" type="submit" value="Ajouter au panier" />
+    </form>
+</div>

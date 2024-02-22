@@ -1,0 +1,72 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Sales Statistics.</h1>
+<h2>Check out how the store is doing!</h2>
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@* Sorting Options  *@
+
+<br>
+<h1 class="text-center">Items sold on this site</h1>
+<br>
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 15px;
+    }
+</style>
+@*Large table with every relevant item in the database*@
+
+<div class="text-center">
+    <table class="text-center">
+        <thead>
+            <tr>
+                @* Foreach field in database *@
+                <th>Bikes</th>
+                <th>Clothing</th>
+                <th>Components</th>
+                <th>Accessories</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int[] sample = new int[100];
+                @* Foreach product in the database *@
+                foreach (var item in sample)
+                {
+                    <tr>
+                        @* Foreach field data in the product *@
+                        <td>item</td>
+                        <td>item</td>
+                        <td>item</td>
+                        <td>item</td>
+                        <td>item</td>
+                        @*<td>@item.ThumbNailPhoto</td>*@
+                        
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+
+</script>
+

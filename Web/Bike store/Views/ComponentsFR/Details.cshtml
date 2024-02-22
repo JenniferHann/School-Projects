@@ -1,0 +1,50 @@
+﻿@model IEnumerable<NoNameBikes.Models.Product>
+
+@{
+    ViewData["Title"] = "Détails";
+    Product selectedProduct = Model.First();
+}
+
+<style>
+    #grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "pic name";
+        width: 1000px;
+        grid-gap: 20px;
+    }
+
+    #namedesc {
+        grid-area: name;
+    }
+
+    #pic {
+        grid-area: pic;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+</style>
+
+<br />
+<br />
+<div id="grid">
+    <div id="pic"><img src="~/images/bike_gears.jpg" /></div>
+    <form asp-action="AddToCart" asp-controller="HomeFR">
+        <div id="namedesc">
+            <h3>@selectedProduct.Name</h3>
+            <p>@ViewData["description"]</p>
+            <hr />
+            Prix: $@Decimal.ToDouble(selectedProduct.ListPrice)
+        </div>
+        <input type="hidden" name="@nameof(selectedProduct.ProductModelId)" value="@selectedProduct.ProductModelId" />
+        <input class="btn btn-primary" type="submit" value="Ajouter au panier" />
+    </form>
+</div>

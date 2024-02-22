@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Sécurité en vélo";
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+    }
+
+    p {
+        font-size: x-large;
+        margin-right: 1em;
+    }
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">Restez en sécurité sur la route avec nos 10 conseils de sécurité à vélo!</h1>
+<br></br>
+<hr>
+<br></br>
+
+@{
+    string[] headers = {
+        "1. Ne faites jamais de vélo sans casque!",
+         "2. Ayez toujours un kit de pneus.",
+         "3. Soyez toujours conscient de votre environnement.",
+         "4. La nuit, assurez-vous d'être très clairement visible de tous à tout moment.",
+         "5. Ne faites jamais de vélo en écoutant des médias numériques.",
+         "6. Expliquez clairement vos intentions.",
+         "7. Familiarisez-vous avec les lois sur le cyclisme de votre région.",
+         "8. Restez hydraté et bien nourri.",
+         "9. Assurez-vous que vous êtes à l'aise sur votre vélo.",
+         "10. Planifiez votre voyage, préparez-vous en conséquence."
+        };
+
+    string[] content = {
+        "Cela peut sembler une évidence, mais saviez-vous que vous réduisez GRANDEMENT vos chances de survivre à un accident de vélo mortel lorsque vous ne portez pas de casque? Les statistiques ne sont pas nécessaires pour comprendre cela, le fait est que, si vous tombez de vos vélos à grande vitesse et que vous vous heurtez la tête sur du béton sans casque, vous serez gravement blessé. Le port d'un casque réduira considérablement les dégâts, fin de l'histoire. ",
+        "Les crevaisons sur un vélo sont presque aussi ennuyeuses que les crevaisons sur une voiture. Si vous avez un pneu crevé sur votre voiture, vous attendez simplement dans votre voiture que quelqu'un vienne vous réparer. C'est également vrai sur les vélos, mais pas forcément. Avec un kit de pneus, vous serez de retour sur la route en quelques minutes! Ce sera comme si de rien n'était! ",
+        "Les chances de se faire heurter par une voiture / un camion sur un vélo sont beaucoup plus grandes que celles en marchant. La CAA dit que les cyclistes sont plus susceptibles d'être blessés aux intersections / zones de contrôle de la circulation. Assurez-vous que vous faites du vélo aux endroits appropriés et vous savez à tout moment quels dangers potentiels vous entourent. ",
+        "Selon la CAA, une grande partie des décès liés à la moto se produisent la nuit ou dans des zones mal éclairées. Se rendre visible en attachant des lumières à votre vélo / sac / vêtements et en portant des vêtements réfléchissants réduira considérablement vos chances de devenir mortel. vous savez qu'il est illégal de ne pas avoir les réflecteurs appropriés sur votre vélo au Canada? ",
+        "Lorsque vous avez des écouteurs, vous limitez considérablement votre audition et vous pouvez être distrait. Les distractions sur la route peuvent entraîner des accidents mortels et si vous écoutez de la musique, vous ne pourrez pas entendre correctement le 18 roues. accélérer vers vous. Les nouveaux écouteurs ont des microphones intégrés qui vous permettent d'entendre votre environnement tout en écoutant de l'audio, ce qui peut être utile. Cela étant dit, ne pas porter d'écouteurs du tout serait mieux. ",
+        "La communication est essentielle en matière de cyclisme. Tout comme la conduite, vous devez indiquer clairement votre itinéraire aux autres voyageurs, qu'il s'agisse de cyclistes automobiles ou autres. Utilisez la signalisation pour laisser les autres aller où vous allez et éviter les accidents potentiels. important car la plupart des accidents de vélo graves sont causés par des véhicules motorisés plus gros. ",
+        "Les conducteurs ne sont pas les seuls à pouvoir être condamnés à une amende sur la route. Les cyclistes peuvent également être condamnés à une amende pour des choses telles que la vitesse et l'incendie de panneaux d'arrêt. Il est facile de supposer que la plupart des lois routières ne s'appliquent pas aux cyclistes, mais la réalité est que vous ne le saurez pas avec certitude tant que vous ne l'aurez pas vérifié par vous-même. Certaines de ces amendes varient d'une région à l'autre, il ne serait donc pas inutile de faire une recherche rapide pour vérifier les lois qui s'appliquent à vous. ",
+        "Le cyclisme peut être un exercice physiquement exigeant, si vous êtes déshydraté de façon critique ou que vous avez faim en cours de route, vous pouvez vous blesser gravement. Vous pouvez vous évanouir en ne mangeant / buvant pas assez. Imaginez avoir une crampe très douloureuse en montant une montagne, je peut vous assurer que ce ne serait pas une descente agréable. Cela ne fera pas de mal d'emporter des collations avec une bouteille d'eau en cas d'urgence. ",
+        "Assurez-vous que votre vélo est bien ajusté à vous. Rien ne devrait être anormalement douloureux lorsque vous faites du vélo. Ce que la plupart des gens oublient d'ajuster devrait être la hauteur de la selle du vélo. Pour voir si votre selle est correctement ajustée, vérifiez à quel point votre les jambes s'étendent pendant que vous pédalez. Si à un moment donné vos jambes sont complètement étendues, votre siège est trop haut. Si vos jambes sont à l'étroit, c'est qu'il est trop bas. ",
+        "Assurez-vous d'être correctement équipé pour votre voyage. Si vous prévoyez un long voyage d'une nuit, emportez de la nourriture / de l'eau supplémentaire et déterminez à quelle fréquence vous vous arrêterez et où. Essayez également de planifier votre itinéraire, vous ne voulez pas faire du vélo quelque part. juste pour savoir qu'il n'y a pas de pistes cyclables 3 heures plus tard. "
+        };
+
+    string[] images = {
+        "helmet.jpg",
+        "tire.jpg",
+        "alert.jpg",
+        "night.jpg",
+        "earphones.jpg",
+        "signal.jpg",
+        "sign.jpg",
+        "water.jpg",
+        "seat.jpg",
+        "plan.jpg"};
+
+    string[] links = {
+        "https://unsplash.com/@waldemarbrandt67w",
+        "https://unsplash.com/@hcxcy",
+        "https://unsplash.com/@nairdasemaj",
+        "https://unsplash.com/@alwerdani",
+        "https://unsplash.com/@ving_n",
+        "https://unsplash.com/@adliwahid",
+        "https://unsplash.com/@garybpt",
+        "https://unsplash.com/@bannon15",
+        "https://unsplash.com/@tower_electric_bikes",
+        "https://unsplash.com/@anniespratt"};
+
+    string[] authorNames = {
+        "Waldemar Brandt",
+        "Vlad Smolyakov",
+        "Adrian Williams",
+        "Ahmed Alwerdani",
+        "Ving N",
+        "Adli Wahid",
+        "Gary Butterfield",
+        "Bannon Morrisey",
+        "Tower Electric Bikes",
+        "Annie Spratt"};
+
+    for (int i = 0; i < headers.Length; i++)
+    {
+    <div class="text-center">
+        <h2>@headers[i]</h2>
+        <br></br>
+        <div class="contentContainer">
+            <p class="text-justify">@content[i]</p>
+            <img class="img" src="~/images/CyclingSafety/@images[i]" alt="Error: image not found." width="600px" height="400px" id="contentImage" />
+        </div>
+        @{if (i == 8)
+            {
+                <br>
+                <a target="_blank" href="">Don't have a bike seat? Browse ours!</a>
+                <br>
+            }
+            if (i == 0)
+            {
+                <br>
+                <a target="_blank" href="">Don't have a helmet? Browse ours!</a>
+                <br>
+            }
+        }
+        @*<div class="text-right"><span>Photo by <a href="@links[i]">@authorNames[i]</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+    </div>
+
+<br></br>
+<hr>
+<br></br>
+    }
+
+<div class="text-center">
+    <h1>Source</h1>
+    <br></br>
+    <p>Les statistiques sur notre site ont été fournies par le <a href="https://www.caa.ca/bike/statistics">CAA</a></p>
+    <br></br>
+    <a href="https://www.caa.ca/bike/statistics"><img class="img" src="~/images/CyclingSafety/caa.png" alt="Error: image not found." width="600px" height="400px" id="contentImage" /></a>
+    <br></br>
+</div>
+
+
+}
+
+

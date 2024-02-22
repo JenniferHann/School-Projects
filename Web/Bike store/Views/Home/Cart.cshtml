@@ -1,0 +1,104 @@
+﻿@using NoNameBikes.Models
+@model Dictionary<Product, int>
+
+@{
+    ViewData["Title"] = "My Cart";
+
+    double totalCartPrice = 0;
+}
+
+@if (Model == null)
+{
+    <h1>Your Cart is Empty!</h1>
+    <p>Browse our site to find something you're interested in.</p>
+}
+else
+{
+    <h1>My Cart</h1>
+
+
+    <table class="table" id="no-more-tables">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (KeyValuePair<Product, int> item in Model)
+            {
+                double subtotal = (double)item.Key.ListPrice * item.Value; //subtotal for item
+                <tr>
+                    <td data-title="Name">@item.Key.Name</td>
+
+                    <td data-title="Color">
+                        @if (item.Key.Color != null)
+                        {
+                            @item.Key.Color
+
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                    </td>
+
+                    <td data-title="Size">
+                        @if (item.Key.Size != null)
+                        {
+                            @item.Key.Size
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                    </td>
+
+                    <td data-title="Weight">
+                        @if (item.Key.Weight != null)
+                        {
+                            @item.Key.Weight
+                            <span> g</span>
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                    </td>
+
+
+                    <td data-title="Price">@item.Key.ListPrice.ToString("c")</td>
+                    <td data-title="Quantity">
+                        <form asp-action="UpdateQuantityInCart">
+                            <input type="hidden" name="ProductId" value="@item.Key.ProductId" />
+                            <input type="number" min="1" id="quantity" name="Quantity" value="@item.Value" size="1" />
+                            <input class="btn btn-warning" type="submit" value="Update Quantity" />
+                        </form>
+                    </td>
+                    <td data-title="Subtotal">@subtotal.ToString("c")</td>
+                    <td data-title="Remove">
+                        <form asp-action="RemoveItemFromCart">
+                            <input type="hidden" name="ProductId" value="@item.Key.ProductId" />
+                            <input class="btn btn-danger" type="submit" value="Remove" />
+                        </form>
+                    </td>
+                </tr>
+                //calculate total cart price
+                totalCartPrice += subtotal;
+            }
+        </tbody>
+        
+    </table>
+    <form asp-action="Checkout">
+        <h4>Total: @totalCartPrice.ToString("c")</h4>
+        <br />
+        <input class="btn btn-primary" type="submit" value="Checkout" />
+    </form>
+}

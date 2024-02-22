@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Covid-19";
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+        font-size: x-large;
+    }
+
+    .contentText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+
+    .introText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: center;
+    }
+
+    .covidList {
+        font-size: x-large;
+        margin-bottom: 0.75em;
+        margin-right: 1em;
+        list-style-type: none;
+        background-color: gold;
+    }
+
+    .listHeader {
+        margin-bottom: 0.75em;
+    }
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">@ViewData["Title"]</h1>
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Operating during a pandemic</h2>
+    <br><p class="contentText">The state of the world hasn't been easy for anyone, including us. We're taking this pandemic very seriously for the safety of our employees and customers alike. For this reason we urge you to follow our rules when visiting our store.</p>
+        <p class="contentText">Our policies ae in accordance with the government's rules about this pandemic that can be found  <a href="https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/?gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGv-NDU8GvJD2EPsGevO16GGVG7weNB673NCSqp7_2CwHfP40LvivZxoCRQMQAvD_BwE">here.</a></p></br>
+    <img class="img" src="~/images/CovidRules/bikeStore.jpg" alt="error image not found" width="600px" height="400px" id="mainImage" />
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/ocen">Coen van de Broek</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>In-store Regulations</h2>
+    <br><p class="introText">We recommend you shop online before visiting our physical store to help limit time spent in store.</p></br>
+    <h3 class="listHeader">When visiting the store, please respect the following:</h3>
+    <ul>
+        <li class="covidList">Customers must disinfect their hands upon both entry and exit.</li>
+        <li class="covidList">Customers must bring their own mask and keep it on.</li>
+        <li class="covidList">Customers must respect 2m distancing at all times.</li>
+        <li class="covidList">Only 8 customers in-store at a time. Others must wait outside.</li>
+        <li class="covidList">While in line, customers must within the circles on the ground.</li>
+        <li class="covidList">We will no longer accept cash, only debit/credit.</li>
+    </ul>
+    <h3 class="listHeader">If you cannot follow these rules, you will be asked to leave.</h3>
+    <br><img class="img" src="~/images/CovidRules/clean.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" /></br>
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/taiscaptures">Tai's Captures</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+
+</div>
+
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Our Other Services</h2>
+    <br></br>
+    <p class="contentText"> Customers can still take advatage of all our other services, provided they respect our regulations of course. The only notable difference being we will unfortunately have to limit the number of appointments as an extra precaution.</p>
+    <img class="img" src="~/images/CovidRules/fix.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" />
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/tecreate">Tom Conway</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Still have questions? <a asp-controller="ContactUs" asp-action="Index">Contact Us!</a></h2>
+</div>
+
+<br></br>
+

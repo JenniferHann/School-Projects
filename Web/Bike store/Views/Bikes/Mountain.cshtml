@@ -1,0 +1,250 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<NoNameBikes.Models.BikeListModel>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Mountain Bikes";
+}
+
+<style>
+
+    image {
+        padding: 15px;
+    }
+
+    a {
+        color: black;
+    }
+
+    a:hover, a:active {
+        color: white;
+        background-color: #bfbfbf;
+        padding: 5px;
+        text-decoration: none;
+    }
+
+    #actionLink {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        font-size: 18px;
+        padding: 10px;
+        margin: 15px;
+        text-align: center;
+    }
+
+    #bikeModel {
+        border-style: solid;
+        border-color: black;
+        display: table;
+        padding: 30px;
+        margin: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .paging {
+        padding-left: 50%;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .sale {
+        color: red;
+        margin: 0px;
+    }
+
+    .SalePrice {
+        font-weight: bold;
+    }
+
+    .discount {
+        font-size: 15px;
+    }
+
+    /*    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 18px;
+        background-color: #CCC;
+    }*/
+
+    /*    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #0C9;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float {
+        margin-top: 22px;
+    }*/
+</style>
+
+
+<h1>Mountain Bike Model List</h1>
+<h2>Check 2 boxes to compare two products</h2>
+
+<br />
+
+<table id="sorts">
+    <tr>
+        <td>@Html.ActionLink("Name Descending", null, new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Name Ascending", null, new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Price High to Low", null, new { sortOrder = ViewBag.PriceSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Price Low to High", null, new { sortOrder = ViewBag.PriceSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Oldest to Newest", null, new { sortOrder = ViewBag.SellDateSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Newest to Oldest", null, new { sortOrder = ViewBag.SellDateSortAParm }, new { id = "sortAsc" })</td>
+    </tr>
+</table>
+
+<br />
+
+<!--<a style="padding:10px;display:block;" href="http://androidcss.com/css/css3-floating-button-tutorial/" target="_blank">Click here for complete tutorial</a>-->
+<!-- Code begins here -->
+<!--<a href="#" class="float">
+    <i class="fa fa-plus my-float"></i>
+</a>-->
+@*https://www.codeproject.com/Questions/708697/Pass-javascript-variables-value-to-Csharp-code-beh*@
+
+@*<asp:HiddenField ID="firstIdVariable" runat="server" />
+    <asp:HiddenField ID="secondIdVariable" runat="server" />
+
+    <script type="text/javascript">
+        var getFirstId = function () {
+            var firstIdVariable = document.getElementById('firstIdVariable');
+            firstIdVariable.value = productIds[0];
+        }
+        var getSecondId = function () {
+            var secondIdVariable = document.getElementById('secondIdVariable');
+            secondIdVariable.value = productIds[1];
+        }
+    </script>
+
+    @{
+        string first_Id = "firstIdVariable.Value";
+        string second_Id = "secondIdVariable.Value";
+    }*@
+
+@{
+    string first_Id = "1";
+    string second_Id = "2";
+}
+
+<hidden id="firstId"></hidden>
+<hidden id="secondId"></hidden>
+
+@*<a href="@Url.Action("CompareBikes", "Bikes", new { id_first = first_Id, id_second = second_Id })"></a>*@
+@*<a href="@Url.Action("CompareBikes", "Bikes", new { id_first = first_Id, id_second = second_Id })"></a>*@
+
+
+@foreach (var item in Model)
+{
+<div id="bikeModel">
+    <a href="@Url.Action("Details", "Bikes", new { id = item.ProductModelID })">
+        @{
+            var base64 = Convert.ToBase64String(item.Photo);
+            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+            <img src='@imgsrc' width="500px" height="300px" />
+        }
+    </a>
+    <p id="actionLink">@Html.ActionLink(item.ProductModel, "Details", new { id = item.ProductModelID })</p>
+    <p>@item.Description</p>
+    @{
+        if (item.SalePrice != null)
+        {
+            <strike>$@item.Price.ToString().Substring(0, item.Price.ToString().Length - 2)</strike>
+            decimal discount = item.Price - (decimal)item.SalePrice;
+            <p class="sale discount">-@discount.ToString().Substring(0, discount.ToString().Length - 2)$</p>
+            <p class="sale SalePrice">@item.SalePrice.ToString().Substring(0, item.SalePrice.ToString().Length - 2)$</p>
+        }
+        else
+        {
+            <p>$@item.Price.ToString().Substring(0, item.Price.ToString().Length - 2)</p>
+        }
+    }
+    <br>
+    <h3>Compare?</h3>
+    <form>
+        <input type="checkbox" id="@item.ProductModelID-checkbox" name="check" value="@item.ProductModelID">
+    </form>
+</div>
+}
+
+<nav class="paging">
+    <vc:pager paging-list="@Model" />
+</nav>
+
+@* JAVASCRIPT *@
+<script>var productIds = [];</script>
+@foreach (var item in Model)
+{
+<script>
+
+            //Onclick for each checkbox
+            document.getElementById('@item.ProductModelID-checkbox').onclick = function () {
+
+                //Add id to array if checked
+                if (this.checked) {
+                    productIds.push(this.value);
+
+                    //If two items are checked, go to compare page
+                    if (productIds.length == 2) {
+
+                        id1 = productIds[0];
+                        id2 = productIds[1];
+
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "/Bikes/CompareBikes",
+                            data: {
+                                id_first : id1,
+                                id_second : id2
+                            }
+                        });
+
+                        //document.body.insertAdjacentHTML('afterbegin', '<a id="compare" asp-action="CompareBikes" asp-route-id_first="' + productIds[0] + '" asp-route-id_second="' + productIds[1] + '">Compare!</a>');
+                    }
+                        //window.location = "CompareBikes?id_first=" + productIds[0] + "?id_second=" + productIds[1];
+                        //window.location = "Details/" + productIds[0];
+                } else {
+                    //Remove element from array if unchecked
+                    productIds = productIds.filter(data => data != this.value);
+
+                    //var element = document.getElementById("compare");
+                    //document.body.removeChild(element);
+                }
+            };
+</script>
+}
+

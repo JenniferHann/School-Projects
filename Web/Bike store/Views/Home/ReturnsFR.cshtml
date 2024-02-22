@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Retours, échanges et remboursements";
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+        font-size: x-large;
+    }
+
+    .contentText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+
+    .introText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: center;
+    }
+
+    .contentContainer li {
+        font-size: x-large;
+        margin-bottom: 0.25em;
+        margin-right: 1em;
+    }
+
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">Retours, échanges et remboursements</h1>
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>La satisfaction du client est notre première priorité.</h2>
+
+    <br><p class="introText">Notre politique flexible de retours nous permet de nous concentrer sur les besoins et le bonheur du client. Nous pensons que vous devriez vous sentir satisfait de nos services, même si le produit ne répond pas à vos attentes à l'arrivée. C'est pourquoi nous proposons des retours gratuits, des remboursements complets et des échanges sur toute demande passée dans les 7 jours suivant la livraison qui remplit au moins l'une des conditions ci-dessous.</p></br>
+    <img class="img" src="~/images/Returns/happyBikers.jpg" alt="road bike picture" width="600px" height="400px" id="mainImage" />
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/ocen">Coen van de Broek</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+@* https://unsplash.com/photos/OFyh9TpMyM8 *@
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Conditions</h2>
+    <br><p class="introText">Attention: pour être éligible à tout type de retour, vous devez nous envoyer une demande dans les 7 jours suivant la réception de votre article.</p></br>
+    <div class="contentContainer">
+        <ul class="text-left">
+            <li>Le client juge la description de l'article inexacte.</li>
+            <li>Le client a reçu le mauvais article.</li>
+            <li>L'article n'est plus nécessaire.</li>
+            <li>L'article est incompatible ou inutile pour le client.</li>
+            <li>L'article est arrivé défectueux ou endommagé.</li>
+            <li>L'article est arrivé avec des pièces manquantes.</li>
+            <li>L'article n'est pas arrivé après un mois.</li>
+            <li>L'article est volé à la livraison (preuve requise).</li>
+        </ul>
+        <img class="img" src="~/images/Returns/package.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" />
+    </div>
+    @*<div class="text-right"><span>Photo by <a href="https://unsplash.com/benchaccounting">Bench Accounting</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Comment demander un échange / retour / remboursement?</h2>
+    <br></br>
+    <div class="contentContainer">
+        <p class="contentText">Une fois que vous savez que votre demande remplit l'une des conditions ci-dessus et que votre fenêtre de retour n'est pas encore expirée, envoyez-nous simplement un e-mail et nous vous guiderons tout au long du processus à partir de là. Votre e-mail doit inclure votre ID de commande (trouvé sur le reçu), le nom du produit et la raison pour laquelle vous souhaitez le retourner.</p>
+        <img class="img" src="~/images/Returns/email.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" />
+    </div>
+    @*<div class="text-right"><span>Photo by <a href="https://unsplash.com/austindistel">Austin Distel</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Vous avez encore des questions? <a asp-controller="ContactUs" asp-action="Index">Nous contacter!</a></h2>
+</div>
+
+<br></br>
+

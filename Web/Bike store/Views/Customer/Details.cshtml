@@ -1,0 +1,70 @@
+﻿@model NoNameBikes.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+
+    string fullName = "";
+    if (Model.Title != null)
+        fullName += Model.Title;
+    fullName += " ";
+    fullName += Model.FirstName;
+    fullName += " ";
+    if (Model.MiddleName != null)
+        fullName += Model.MiddleName;
+    fullName += " ";
+    fullName += Model.LastName;
+    fullName += " ";
+    if (Model.Suffix != null)
+}
+
+<style>
+    main{
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+    }
+    div{
+        border: solid 2px black;
+    }
+</style>
+
+<h1>Your Profile</h1>
+<div class="main">
+
+
+    <div class="name">@fullName</div>
+    <div class="id">
+        <label class="div-titles">Customer Number:</label>
+        <span>#@Model.CustomerId</span>
+    </div>
+    <div class="company">
+        <label class="div-titles">Company Name:</label>
+        @if (Model.CompanyName == null)
+        {
+            <span>N/A</span>
+        }
+        else
+        {
+            <span>@Model.CompanyName</span>
+        }
+    </div>
+    <div class="email">
+        <label class="div-titles">Email Address:</label>
+        <span>@Model.EmailAddress</span>
+    </div>
+    <div class="phone">
+        <label class="div-titles">Phone Number:</label>
+        @if (Model.Phone == null)
+        {
+            <span>N/A</span>
+        }
+        else
+        {
+            <span>@Model.Phone</span>
+        }
+    </div>
+    <div class="date">
+        <label class="div-titles">Date Joined:</label>
+        <span>@Model.ModifiedDate</span>
+    </div>
+</div>

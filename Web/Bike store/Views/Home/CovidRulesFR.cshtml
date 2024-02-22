@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Covid-19";
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+        font-size: x-large;
+    }
+
+    .contentText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+
+    .introText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: center;
+    }
+
+    .covidList {
+        font-size: x-large;
+        margin-bottom: 0.75em;
+        margin-right: 1em;
+        list-style-type: none;
+        background-color: gold;
+    }
+
+    .listHeader {
+        margin-bottom: 0.75em;
+    }
+</style>
+
+<hr>
+<br></br>
+<h1 class="text-center">@ViewData["Title"]</h1>
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Opérer pendant une pandémie</h2>
+    <br><p class="contentText">L'état du monde n'a été facile pour personne, y compris pour nous. Nous prenons cette pandémie très au sérieux pour la sécurité de nos employés et de nos clients. Pour cette raison, nous vous invitons à suivre nos règles lorsque vous visitez notre boutique.</p></br>
+        <p class="contentText">Nos politiques sont conformes aux règles du gouvernement concernant cette pandémie que l'on peut trouver <a href="https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/?gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGv-NDU8GvJD2EPsGevO16GGVG7weNB673NCSqp7_2CwHfP40LvivZxoCRQMQAvD_BwE">ici.</a></p></br>
+    <img class="img" src="~/images/CovidRules/bikeStore.jpg" alt="error image not found" width="600px" height="400px" id="mainImage" />
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/ocen">Coen van de Broek</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Règlements en magasin</h2>
+    <br><p class="introText">Nous vous recommandons de magasiner en ligne avant de visiter notre magasin physique pour limiter le temps passé en magasin.</p></br>
+        <h3 class="listHeader">Lors de la visite du magasin, veuillez respecter les points suivants:</h3>
+    <ul>
+        <li class="covidList">Les clients doivent se désinfecter les mains à l'entrée et à la sortie.</li>
+        <li class="covidList">Les clients doivent apporter leur propre masque et le garder.</li>
+        <li class="covidList">Les clients doivent respecter à tout moment une distance de 2 m.</li>
+        <li class="covidList">Seulement 8 clients en magasin à la fois. D'autres doivent attendre à l'extérieur.</li>
+        <li class="covidList">En ligne, les clients doivent être dans les cercles sur le terrain.</li>
+        <li class="covidList">Nous n'accepterons plus les espèces, uniquement le débit / crédit.</li>
+    </ul>
+    <h3 class="listHeader">Si vous ne pouvez pas suivre ces règles, il vous sera demandé de partir.</h3>
+    <br><img class="img" src="~/images/CovidRules/clean.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" /></br>
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/taiscaptures">Tai's Captures</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+
+</div>
+
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Nos Autres Services</h2>
+    <br></br>
+    <p class="contentText">Les clients peuvent toujours profiter de tous nos autres services, à condition de respecter bien entendu nos réglementations. La seule différence notable étant que nous devrons malheureusement limiter le nombre de rendez-vous par précaution supplémentaire.</p>
+    <img class="img" src="~/images/CovidRules/fix.jpg" alt="Error: image not found." width="600px" height="400px" id="contentImage" />
+    @*<div class="text-center"><span>Photo by <a href="https://unsplash.com/tecreate">Tom Conway</a> on <a href="https://unsplash.com/">Unsplash</a></span></div>*@
+</div>
+
+<br></br>
+<hr>
+<br></br>
+
+<div class="text-center">
+    <h2>Vous avez encore des questions? <a asp-controller="ContactUs" asp-action="IndexFR">Nous contacter!</a></h2>
+</div>
+
+<br></br>
+

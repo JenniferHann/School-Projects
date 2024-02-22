@@ -1,0 +1,226 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<NoNameBikes.Models.ProductCategory>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Accessoires";
+}
+
+<style>
+    .paging {
+        padding-left: 50%;
+    }
+
+    div {
+        text-align: center;
+        font-size: large;
+    }
+
+    img {
+        border: solid;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortRow {
+        border-bottom: none;
+    }
+
+    a {
+        color: black;
+    }
+
+        a:hover, a:active {
+            color: white;
+            background-color: #bfbfbf;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #actionLink:link, #actionLink:visited {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #actionLink:hover, #actionLink:active {
+        text-decoration: underline;
+    }
+
+    .components {
+        border-top: solid;
+        border-top-color: gray;
+    }
+</style>
+
+<div>
+    <h1>Accessoires</h1>
+    <br />
+    @*    <img class="img" src="~/images/cycling_helmet.jpg" alt="bike gears picture" width="500px" height="300px" />
+        <br />*@
+    <br />
+
+    <table id="sorts">
+        <tr id="sortRow">
+            <td>@Html.ActionLink("Sort Descending", "IndexFR", new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+            <td>@Html.ActionLink("Sort Ascending", "IndexFR", new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+                <tr class="components">
+                    <td>
+                        @{
+                            bool hasSpace = item.Name.Contains(" ");
+                            string name = item.Name;
+                            if (hasSpace == true)
+                            {
+                                name = name.Replace(" ", "");
+                            }
+
+                            <a href="@Url.Action(name+"FR", "Accessories", null)">
+                                @{
+                                    switch (item.Name)
+                                    {
+                                        case "Bike Racks":
+                                            <img class="img" src="~/images/Accessories/jasper-garratt-bike-racks.jpg" alt="Porte-Vélo" width="500px" height="300px" />
+                                            break;
+                                        case "Bike Stands":
+                                            <img class="img" src="~/images/Accessories/bruno-van-der-kraan-bike-stands.jpg" alt="Support de Vélo" width="500px" height="300px" />
+                                            break;
+                                        case "Bottles and Cages":
+                                            <img class="img" src="~/images/Accessories/simon-connellan-bottles-cages.jpg" alt="Bouteilles et Cages" width="500px" height="300px" />
+                                            break;
+                                        case "Cleaners":
+                                            <img class="img" src="~/images/Accessories/cleaners.jpg" alt="Nettoyeurs" width="500px" height="300px" />
+                                            break;
+                                        case "Fenders":
+                                            <img class="img" src="~/images/Accessories/nick-fenders.jpg" alt="Ailes" width="500px" height="300px" />
+                                            break;
+                                        case "Helmets":
+                                            <img class="img" src="~/images/Accessories/janko-ferlic-helmets.jpg" alt="Casques" width="500px" height="300px" />
+                                            break;
+                                        case "Hydration Packs":
+                                            <img class="img" src="~/images/Accessories/marek-piwnicki-hydration-packs.jpg" alt="Packs d'Hydatation" width="500px" height="300px" />
+                                            break;
+                                        case "Tires and Tubes":
+                                            <img class="img" src="~/images/Accessories/basel-mahmoud-tires-tube.jpg" alt="Pneus et Tubes" width="500px" height="300px" />
+                                            break;
+                                    }
+                                }
+                            </a>
+                        }
+                    </td>
+
+                    <td>
+                        @{
+                            hasSpace = item.Name.Contains(" ");
+                            if (hasSpace == true)
+                            {
+                                name = item.Name;
+                                name = name.Replace(" ", "");
+                                @*@Html.ActionLink(item.Name, name, null, null, new { id = "actionLink" })*@
+                                switch (item.Name)
+                                {
+                                    case "Bike Racks":
+                                        @Html.ActionLink("Porte-Vélo", name+"FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Bike Stands":
+                                        @Html.ActionLink("Support de Vélo", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Bottles and Cages":
+                                        @Html.ActionLink("Bouteilles et Cages", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Cleaners":
+                                        @Html.ActionLink("Nettoyeurs", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Fenders":
+                                        @Html.ActionLink("Ailes", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Helmets":
+                                        @Html.ActionLink("Casques", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Hydration Packs":
+                                        @Html.ActionLink("Packs d'Hydatation", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Tires and Tubes":
+                                        @Html.ActionLink("Pneus et Tubes", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                @*@Html.ActionLink(item.Name, item.Name, null, null, new { id = "actionLink" })*@
+                                switch (item.Name)
+                                {
+                                    case "Bike Racks":
+                                        @Html.ActionLink("Porte-Vélo", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Bike Stands":
+                                        @Html.ActionLink("Support de Vélo", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Bottles and Cages":
+                                        @Html.ActionLink("Bouteilles et Cages", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Cleaners":
+                                        @Html.ActionLink("Nettoyeurs", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Fenders":
+                                        @Html.ActionLink("Ailes", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Helmets":
+                                        @Html.ActionLink("Casques", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Hydration Packs":
+                                        @Html.ActionLink("Packs d'Hydatation", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Tires and Tubes":
+                                        @Html.ActionLink("Pneus et Tubes", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <nav class="paging">
+        <vc:pager paging-list="@Model" />
+    </nav>
+</div>

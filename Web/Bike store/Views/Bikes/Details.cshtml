@@ -1,0 +1,186 @@
+﻿@model IEnumerable<NoNameBikes.Models.Product>
+
+@{
+    ViewData["Title"] = Model.First().Name;
+    List<string> colours = new List<string>();
+    List<string> sizes = new List<string>();
+    List<decimal> prices = new List<decimal>();
+    List<decimal?> weights = new List<decimal?>();
+    List<string> productsNumbers = new List<string>();
+    List<decimal?> salePrices = new List<decimal?>();
+    Product selectedProduct = Model.First();
+    string name = selectedProduct.Name.Substring(0, selectedProduct.Name.IndexOf(" "));
+
+    foreach (var item in Model)
+    {
+        if (!colours.Contains(item.Color))
+            colours.Add(item.Color);
+
+        if (!sizes.Contains(item.Size))
+            sizes.Add(item.Size);
+
+        if (!prices.Contains(item.ListPrice))
+            prices.Add(item.ListPrice);
+
+        if( item.SalePrice != null)
+        {
+            if (DateTime.Compare((DateTime)item.SaleEndDate, DateTime.Now) > 0)
+            {
+                if (!salePrices.Contains(item.SalePrice))
+                    salePrices.Add(item.SalePrice);
+            }
+        }
+
+        if (!weights.Contains(item.Weight))
+            weights.Add(item.Weight);
+
+        productsNumbers.Add(item.ProductNumber);
+    }
+
+    sizes.Sort();
+}
+
+<style>
+    #grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-areas: "pic name" "pic colours" "pic weights" "pic sizes" "pic prices";
+        width: 1000px;
+        grid-gap: 20px;
+    }
+
+    .productNum {
+        grid-area: productNumber;
+    }
+
+    .colour {
+        grid-area: colours;
+    }
+
+    .weight {
+        grid-area: weights;
+    }
+
+    .size {
+        grid-area: sizes;
+    }
+
+    .price {
+        grid-area: prices;
+        padding-bottom: 0px;
+    }
+
+    #namedesc {
+        grid-area: name;
+    }
+
+    #pic {
+        grid-area: pic;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+
+    #priceLabel {
+        margin-bottom: 0px;
+    }
+
+    .sale {
+        color: red;
+        margin: 0px;
+    }
+
+    .SalePrice {
+        font-weight: bold;
+        padding-bottom: 5px;
+        padding-left: 43px;
+    }
+
+    .discount {
+        font-size: 15px;
+        padding-left: 20px;
+    }
+</style>
+
+<br />
+<br />
+<div id="detail-grid">
+    @{ 
+        var base64 = Convert.ToBase64String(selectedProduct.ThumbNailPhoto);
+        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+    }
+    <div id="pic"><img class="img" src='@imgSrc'/></div>
+    <div id="namedesc">
+        <h3>@name</h3>
+        <p>@ViewData["description"]</p>
+        <hr />
+
+        <form asp-action="AddToCart" asp-controller="Home">
+            @if (colours.Count() != 0)
+            {
+                <div class="colour" onchange="changePrice()">
+                    <label for="colours">Colour:</label>
+                    <select id="colours" name="@nameof(selectedProduct.Color)">
+                        @foreach (String color in colours)
+                        {
+                            <option value="@color">@color</option>
+                        }
+                    </select>
+                </div>
+            }
+
+            @if (sizes.Count() != 0)
+            {
+                <div class="size">
+                    <label for="sizes">Size:</label>
+                    <select id="sizes" name="@nameof(selectedProduct.Size)">
+                        @foreach (String size in sizes)
+                        {
+                            <option value="@size">@size cm</option>
+                        }
+                    </select>
+                </div>
+            }
+
+            <div class="price">
+                <label for="prices" id="priceLabel">Price:</label>
+                @*<strong>$@Math.Round(prices.First(), 2)</strong>*@
+                @{
+                    if (selectedProduct.SalePrice != null)
+                    {
+                        if (DateTime.Compare((DateTime)selectedProduct.SaleEndDate, DateTime.Now) > 0)
+                        {
+                            decimal discount = selectedProduct.ListPrice - (decimal)selectedProduct.SalePrice;
+                            <strike>@Math.Round(selectedProduct.ListPrice, 2)$</strike> <label class="sale discount">-@discount.ToString().Substring(0, discount.ToString().Length - 2)$</label>
+
+                            <p class="sale SalePrice">  @selectedProduct.SalePrice.ToString().Substring(0, selectedProduct.SalePrice.ToString().Length - 2)$</p>
+                        }
+                        else
+                        {
+                            <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                        }
+                    }
+                    else
+                    {
+                        <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                    }
+
+                }
+            </div>
+            <input type="hidden" name="@nameof(selectedProduct.ProductModelId)" value="@selectedProduct.ProductModelId" />
+            <br />
+            <label for="Quantity">Quantity:</label>
+            <input type="number" min="1" size="1" name="Quantity" value="1" />
+            <input class="btn btn-primary" type="submit" value="Add To Cart" />
+        </form>
+</div>
+           
+<script>
+    
+</script>

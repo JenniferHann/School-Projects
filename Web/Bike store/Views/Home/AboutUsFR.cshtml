@@ -1,0 +1,156 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "À propos de nous";
+}
+
+<style>
+    div {
+        text-align: center;
+    }
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .players {
+        padding: 20px;
+    }
+
+    #row1 {
+        border-bottom: 1px solid;
+    }
+
+    .row2 {
+        padding-top: 20px;
+    }
+
+    #mainImage {
+        margin: 20px;
+    }
+
+    p {
+        font-size:large;
+    }
+
+    .img {
+        border-style: solid;
+        border-color: black;
+        padding:20px;
+    }
+</style>
+
+<div>
+    <hr>
+    <br/>
+    <h1 class="text-center">À propos de nous</h1>
+    <br/>
+    <hr>
+    <br />
+    <h4>Nous pouvons vous faire pédaler en un rien de temps.</h4>
+
+    <img class="img" src="~/images/AboutUs/about_us.jpg" alt="road bike picture" width="600px" height="400px" id="mainImage" />
+    <br />
+    <br />
+    <hr />
+    <h1>Notre Objectif</h1>
+    <br />
+    <p>
+        Le magasin de vélos No Name Brand est votre guichet unique pour tous vos besoins en matière de vélos.
+        Nous accueillons également les cyclistes occasionnels et les cyclistes professionnels.
+        Réduire les émissions de combustibles fossiles est notre principale priorité et offrir aux gens un passe-temps sain ou un mode de transport pour une vie longue et heureuse en famille et entre amis.
+        Nous voulons que nos clients vivent des expériences et des souvenirs incroyables avec nos vélos, quel que soit leur âge.
+        À partir de la petite enfance assis à l'arrière des vélos de nos parents jusqu'à obtenir notre propre vélo en tant qu'enfant.
+        Ensuite, retirer nos roues d'entraînement est une étape monumentale dans la vie d'un enfant qui consiste à acheter un vélo pour adulte et à répéter le cycle avec la bénédiction de nos propres enfants.
+    </p>
+    <br />
+    <br />
+    <table>
+        <tr>
+            <td>
+                <img class="icon" src="~/images/love.svg" alt="heart icon" width="150px" height="150px" />
+            </td>
+            <td>
+                <img class="icon" src="~/images/performance.png" alt="performance icon" width="150px" height="150px" />
+            </td>
+            <td>
+                <img class="icon" src="~/images/quality.svg" alt="quality icon" width="150px" height="180px" />
+            </td>
+        </tr>
+        <tr>
+            <td>Amour</td>
+            <td>Performance</td>
+            <td>Quality</td>
+        </tr>
+        <tr>
+            <td>Nos vélos sont fabriqués avec amour pour nos chers clients.</td>
+            <td>Nos vélos sont conçus pour des performances optimales par tous les temps.</td>
+            <td>Chaque composant est fabriqué avec des matériaux de qualité pour un maximum de confort et de performance.</td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <hr />
+    <h1>Notre Histoire</h1>
+    <br />
+    <p>
+        Partant d'un humble début avec un père désireux de partager sa passion du vélo avec ses enfants jusqu'à aujourd'hui
+        où nous sommes maintenant. No Name Brand Bike Company a commencé dans un petit garage à réparer le vélo de quiconque avait besoin de soins.
+        Avec ses enfants à ses côtés, il leur a montré tout ce qu'il savait sur les vélos. Plus tard, le propriétaire a commencé à vendre
+        vélos afin que ceux qui voulaient essayer de devenir cycliste aient un endroit où ils se sentiraient les bienvenus dans un cadre décontracté.
+    </p>
+    <img class="img" src="~/images/AboutUs/kevin-wolf-3AbwSH1y9dc-unsplash.jpg" alt="bike in front of a garage picture" width="600px" height="400px" id="mainImage" />
+    <br />
+    <br />
+    <hr />
+    <h1>Nos Acteurs Clée</h1>
+    <br />
+    <table>
+        <tr>
+            <th>Claudiu Scotnotis</th>
+            <th>Emmett Coffin</th>
+            <th>Dipesh Patel</th>
+        </tr>
+        <tr>
+            <td class="players">Propriétaire</td>
+            <td class="players">Mécanique de Vélo</td>
+            <td class="players">Vendeur</td>
+        </tr>
+        <tr>
+            <td class="players"><img class="img" src="~/images/vicky-hladynets-GRyMXAQdtp8-unsplash.jpg" alt="Claudiu Scotnotis portrait" width="250px" height="300px" /></td>
+            <td class="players"><img class="img" src="~/images/susanna-marsiglia-CZwXvMhFLk8-unsplash.jpg" alt="Emmet Coffin portrait" width="250px" height="300px" /></td>
+            <td class="players"><img class="img" src="~/images/jurica-koletic-7YVZYZeITc8-unsplash.jpg" alt="Dipesh Patel portrait" width="250px" height="300px" /></td>
+        </tr>
+        <tr id="row1">
+            <td class="players">Expert dans tous les domaines liés aux vélos.</td>
+            <td class="players">Expert en composants de vélo pour toute réparation ou mise à niveau.</td>
+            <td class="players">Expert dans la fourniture de services clients de qualité pour une expérience d'achat gratuite stressée.</td>
+        </tr>
+        <tr>
+            <th class="row2">Eric Zbacnik-Li</th>
+            <th class="row2">Jennifer Hann</th>
+        </tr>
+        <tr>
+            <td class="players">Directeur</td>
+            <td class="players">Vendeuse</td>
+        </tr>
+        <tr>
+            <td class="players"><img class="img" src="~/images/philip-martin-5aGUyCW_PJw-unsplash.jpg" alt="Eric Zbacnik-li portrait" width="250px" height="300px" /></td>
+            <td class="players"><img class="img" src="~/images/andrey-zvyagintsev-PdcNOb4iYFs-unsplash.jpg" alt="Jennifer Hann portrait" width="250px" height="300px" /></td>
+        </tr>
+        <tr>
+            <td class="players">Expert dans toutes les marques et modèles pour aider nos clients à choisir le vélo parfait.</td>
+            <td class="players">Expert pour fournir des conseils et associer les bons accessoires au style de vie de nos clients.</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+
+

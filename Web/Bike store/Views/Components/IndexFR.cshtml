@@ -1,0 +1,280 @@
+﻿@*@model IEnumerable<NoNameBikes.Models.ProductCategory>*@
+
+@model ReflectionIT.Mvc.Paging.PagingList<NoNameBikes.Models.ProductCategory>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Composants";
+}
+
+<style>
+
+    .components {
+        border-top: solid;
+        border-top-color: gray;
+    }
+
+    div {
+        text-align: center;
+        font-size: large;
+    }
+
+    img {
+        border: solid;
+        padding: 20px;
+        margin: 25px;
+    }
+
+    #actionLink:link, #actionLink:visited {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #actionLink:hover, #actionLink:active {
+        text-decoration: underline;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortRow {
+        border-bottom: none;
+    }
+
+    a {
+        color: black;
+    }
+
+        a:hover, a:active {
+            color: white;
+            background-color: #bfbfbf;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+    .paging {
+        padding-left: 50%;
+    }
+</style>
+
+<div>
+    <h1>Composants</h1>
+    @*<br />*@
+    @*<img class="img" src="~/images/bike_gears.jpg" alt="bike gears picture" width="500px" height="300px" />*@
+    <br />
+    <br />
+
+    <table id="sorts">
+        <tr id="sortRow">
+            <td>@Html.ActionLink("Trier par ordre décroissant", "IndexFR", new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+            <td>@Html.ActionLink("Trier par ordre croissant", "IndexFR", new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+                <tr class="components">
+                    <td>
+                        @{
+                            bool hasSpace = item.Name.Contains(" ");
+                            string name = name = item.Name;
+                            if (hasSpace == true)
+                            {
+                                name = name.Replace(" ", "");
+                            }
+
+                            <a href="@Url.Action(name+"FR", "Components", null)">
+                                @{
+                                    switch (item.Name)
+                                    {
+                                        case "Bottom Brackets":
+                                            <img class="img" src="~/images/Components/markus-spiske-bottom-brackets.jpg" alt="image boîtiers de pédalier" width="500px" height="300px" />
+                                            break;
+                                        case "Brakes":
+                                            <img class="img" src="~/images/Components/markus-spiske-Brakes.jpg" alt="image freins" width="500px" height="300px" />
+                                            break;
+                                        case "Chains":
+                                            <img class="img" src="~/images/Components/vlad-smolyakov-chains.jpg" alt="image chaînes" width="500px" height="300px" />
+                                            break;
+                                        case "Cranksets":
+                                            <img class="img" src="~/images/Components/crankset.jpg" alt="image pédaliers" width="500px" height="300px" />
+                                            break;
+                                        case "Derailleurs":
+                                            <img class="img" src="~/images/Components/derailleur.jpg" alt="image dérailleurs" width="500px" height="300px" />
+                                            break;
+                                        case "Handlebars":
+                                            <img class="img" src="~/images/Components/handlebars.jpg" alt="image guidons" width="500px" height="300px" />
+                                            break;
+                                        case "Mountain Frames":
+                                            <img class="img" src="~/images/Components/mountain-frame.jpg" alt="image cadres de montagne" width="500px" height="300px" />
+                                            break;
+                                        case "Pedals":
+                                            <img class="img" src="~/images/Components/pedal.jpg" alt="image pédales" width="500px" height="300px" />
+                                            break;
+                                        case "Road Frames":
+                                            <img class="img" src="~/images/Components/road-frame.jpg" alt="image cadres de route" width="500px" height="300px" />
+                                            break;
+                                        case "Saddles":
+                                            <img class="img" src="~/images/Components/saddles.jpg" alt="image selles" width="500px" height="300px" />
+                                            break;
+                                        case "Touring Frames":
+                                            <img class="img" src="~/images/Components/touring-frame.jpg" alt="image cadre de randonné" width="500px" height="300px" />
+                                            break;
+                                    }
+                                }
+                            </a>
+                        }
+
+                    </td>
+
+                    <td>
+                        @{
+                            hasSpace = item.Name.Contains(" ");
+                            if (hasSpace == true)
+                            {
+                                name = item.Name;
+                                name = name.Replace(" ", "");
+                                @*@Html.ActionLink(item.Name, name, null, null, new { id = "actionLink" })*@
+                                switch (item.Name)
+                                {
+                                    case "Bottom Brackets":
+                                        @Html.ActionLink("Boîtiers de pédalier", name+"FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Brakes":
+                                        @Html.ActionLink("Freins", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Chains":
+                                        @Html.ActionLink("Chaînes", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Cranksets":
+                                        @Html.ActionLink("Pédaliers", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Derailleurs":
+                                        @Html.ActionLink("Dérailleurs", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Handlebars":
+                                        @Html.ActionLink("Guidons", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Mountain Frames":
+                                        @Html.ActionLink("Cadres de montagne", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Pedals":
+                                        @Html.ActionLink("Pédales", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Road Frames":
+                                        @Html.ActionLink("Cadres de route", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Saddles":
+                                        @Html.ActionLink("Selles", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Touring Frames":
+                                        @Html.ActionLink("Cadre de randonné", name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                switch (item.Name)
+                                {
+                                    case "Bottom Brackets":
+                                        @Html.ActionLink("Boîtiers de pédalier", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Brakes":
+                                        @Html.ActionLink("Freins", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Chains":
+                                        @Html.ActionLink("Chaînes", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Cranksets":
+                                        @Html.ActionLink("Pédaliers", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Derailleurs":
+                                        @Html.ActionLink("Dérailleurs", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Handlebars":
+                                        @Html.ActionLink("Guidons", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Mountain Frames":
+                                        @Html.ActionLink("Cadres de montagne", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Pedals":
+                                        @Html.ActionLink("Pédales", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Road Frames":
+                                        @Html.ActionLink("Cadres de route", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Saddles":
+                                        @Html.ActionLink("Selles", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Touring Frames":
+                                        @Html.ActionLink("Cadre de randonné", item.Name + "FR", null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+
+            }
+        }
+    </table>
+    <br />
+    <nav class="paging">
+        <vc:pager paging-list="@Model" />
+    </nav>
+
+    @*    @{
+            foreach (var item in Model)
+            {
+                <hr />
+
+                bool hasSpace = item.Name.Contains(" ");
+                if (hasSpace == true)
+                {
+                    string name = item.Name;
+                                    name = name.Replace(" ", "");
+                    @Html.ActionLink(item.Name, name)
+                                }
+                else
+                                {
+                                    @Html.ActionLink(item.Name, item.Name)
+                }
+            }
+        }*@
+</div>
+
+
+
+

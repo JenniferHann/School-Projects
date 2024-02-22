@@ -1,0 +1,11 @@
+﻿@model NoNameBikes.Models.Customer
+
+@{
+    ViewData["Title"] = "Email Confirmation";
+}
+
+<h1>confirmation de courriel</h1>
+
+<h2>Inscription complete, bienvenue @Model.FirstName @Model.LastName</h2>
+
+<p>Un courriel de confirmation a été envoyé à @Model.EmailAddress</p>

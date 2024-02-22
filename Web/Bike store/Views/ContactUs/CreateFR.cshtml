@@ -1,0 +1,101 @@
+﻿@model NoNameBikes.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<h1>Contacter nous</h1>
+<br />
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">Prénom</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Nom de famille</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label">Code postal</label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Address courriel</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic" class="control-label">Sujet</label>
+                <select class="form-control" asp-for="Topic">
+                    <option value="" disabled selected>Select Topic</option>
+                    <option>Ma commande</option>
+                    <option>Retour d'information</option>
+                    <option>Question sur le produit</option>
+                    <option>Service client et commentaires</option>
+                    <option>Question technique, spécifications, géométrie, dimensionnement et informations historiques</option>
+                    <option>Garantie</option>
+                    <option>Enregistrement</option>
+                    <option>Demandes de catalogue</option>
+                    <option>Manuels du propriétaire</option>
+                    <option>Demandes des médias</option>
+                    <option>Parrainage et dons</option>
+                </select>
+                <span asp-validation-for="Topic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">Numéro de téléphone</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label">Commentaire</label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Soumettre" class="btn btn-primary" id="submit"/>
+                <button type="reset" class="btn btn-primary" onclick="resetAll()">Réinitialiser</button>
+            </div>
+            @{ 
+                if(!object.ReferenceEquals(null, Model))
+                {
+                        <p style="color: red">Erreur: Doit spécifier que l'utilisateur n'est pas un robot.</p>
+                }
+            }
+            <div class="form-group">
+                <div class="g-recaptcha" data-callback="enableBtn" data-sitekey="6Lc4UuMZAAAAALIfpRSSHl4bNGxD6Q0mgHiRyKQ0"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Retour à la page Contactez-nous</a>
+</div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+    function resetAll() {
+        grecaptcha.reset(0);
+    }
+
+    function enableBtn() {
+        var response = grecaptcha.getResponse();
+        if (response.lenght != 0)
+            document.getElementById("submit").disabled = false;
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

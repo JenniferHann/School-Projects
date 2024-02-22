@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+<h1>Delete product from the database permanently?</h1>
+
+<div></div>
+
+<style>
+    .container {
+    display: flex;
+    align-content:center;
+    }
+</style>
+
+<br>
+<hr>
+<br>
+
+<div class="text-center">
+    <div>
+        <form asp-action="Delete" class="text-center">
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <input type="submit" value="Yes" class="btn btn-primary" />
+            </div>
+        </form>
+        <form asp-action="Inventory" class="text-center">
+            <div class="form-group">
+                <input type="submit" value="No" class="btn btn-secondary" />
+            </div>
+        </form>
+    </div>    
+</div>
+
+
+
+

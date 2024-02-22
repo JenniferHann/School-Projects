@@ -1,0 +1,107 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<NoNameBikes.Models.ComponentListModel>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Freins";
+}
+
+<style>
+
+    image {
+        padding: 15px;
+    }
+
+    a {
+        color: black;
+    }
+
+        a:hover, a:active {
+            color: white;
+            background-color: #bfbfbf;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+    #actionLink {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        font-size: 18px;
+        padding: 10px;
+        margin: 15px;
+        text-align: center;
+    }
+
+    #bikeModel {
+        border-style: solid;
+        border-color: black;
+        display: table;
+        padding: 30px;
+        margin: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .paging {
+        padding-left: 50%;
+    }
+</style>
+
+<h1>Freins</h1>
+
+<br />
+
+<table id="sorts">
+    <tr>
+        <td>@Html.ActionLink("Nom Décroissant", null, new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Nom Croissant", null, new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Prix Décroissant", null, new { sortOrder = ViewBag.PriceSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Prix Croissant", null, new { sortOrder = ViewBag.PriceSortAParm }, new { id = "sortAsc" })</td>
+        <td>@Html.ActionLink("Ancien Au Récent", null, new { sortOrder = ViewBag.SellDateSortDParm }, new { id = "sortDesc" })</td>
+        <td>@Html.ActionLink("Récent Au Ancient", null, new { sortOrder = ViewBag.SellDateSortAParm }, new { id = "sortAsc" })</td>
+    </tr>
+</table>
+
+<br />
+
+@foreach (var item in Model)
+{
+    <div id="bikeModel">
+        <a href="@Url.Action("Details", "ComponentsFR", new { id = item.ProductModelID })">
+            @{
+                var base64 = Convert.ToBase64String(item.Photo);
+                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                <img src='@imgsrc' width="500px" height="300px" />
+            }
+            <p id="actionLink">@Html.ActionLink(item.ProductModel, "Details", new { id = item.ProductModelID })</p>
+            <p>@item.Description</p>
+            <p>$@item.Price.ToString().Substring(0, item.Price.ToString().Length - 2)</p>
+        </a>
+    </div>
+}
+
+<nav class="paging">
+    <vc:pager paging-list="@Model" />
+</nav>

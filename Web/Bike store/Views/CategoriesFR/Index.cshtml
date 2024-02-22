@@ -1,0 +1,114 @@
+﻿@model IEnumerable<NoNameBikes.Models.ProductCategory>
+
+@{
+    ViewData["Title"] = "Catégories";
+}
+
+<style>
+
+    #actionLink:link, #actionLink:visited {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #actionLink:hover, #actionLink:active {
+        text-decoration: underline;
+    }
+
+    .img {
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+
+    .table td {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 20px;
+        color: whitesmoke;
+        vertical-align: middle;
+        font-size: 30px;
+    }
+
+    .middleTD {
+        text-align: right;
+    }
+
+    .imagebutton {
+        text-align: center;
+    }
+
+    .textbutton {
+        text-align: left;
+    }
+</style>
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Jetez un œil aux catégories de produits que nous proposons à la vente:</h4>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="imagebutton">
+                    @switch (item.Name)
+                    {
+                        //Show the correct image
+                        case "Bikes":
+                            <a href="@Url.Action("Index", "BikesFR")">
+                                <img class="img" src="~/images/Categories/bike_icon.png" alt="mountain bike picture" />
+                            </a>
+                            break;
+                        case "Components":
+                            <a href="@Url.Action("Index", "ComponentsFR")">
+                                <img class="img" src="~/images/Categories/chain_icon.png" alt="gears of a bicycle" />
+                            </a>
+                            break;
+                        case "Clothing":
+                            <a href="@Url.Action("Index", "ClothingFR")">
+                                <img class="img" src="~/images/Categories/shirt_icon.png" alt="bike shirt" />
+                            </a>
+                            break;
+                        case "Accessories":
+                            <a href="@Url.Action("Index", "AccessoriesFR")">
+                                <img class="img" src="~/images/Categories/helmet_icon.png" alt="bike helmet" />
+                            </a>
+                            break;
+                    }
+                </td>
+                <td class="textbutton">
+                    @if (item.Name == "Bikes")
+                    {
+                        //if category is bikes, link to index of BikeController
+                        @Html.ActionLink("Vélo", "Index", "BikesFR", null, new { id = "actionLink" })
+                    }
+                    else
+                    {
+                        //link to category in CategoriesController
+                        @*@Html.ActionLink(item.Name, "Index", item.Name, null, new { id = "actionLink" })*@
+                        switch (item.Name)
+                        {
+                            //Show the correct image
+                            case "Components":
+                                @Html.ActionLink("Composants", "Index", "ComponentsFR", null, new { id = "actionLink" })
+                                break;
+                            case "Clothing":
+                                @Html.ActionLink("Vêtements", "Index", "ClothingFR", null, new { id = "actionLink" })
+                                break;
+                            case "Accessories":
+                                @Html.ActionLink("Accessoires", "Index", "AccessoriesFR", null, new { id = "actionLink" })
+                                break;
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

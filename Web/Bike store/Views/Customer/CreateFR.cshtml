@@ -1,0 +1,112 @@
+﻿@model NoNameBikes.Models.Customer
+
+@{
+    ViewData["Title"] = "S'inscrire";
+
+}
+
+<style>
+    span#customErrorMsg {
+        color: red;
+    }
+</style>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<h1>Créer</h1>
+
+<h4>Client</h4>
+<hr />
+@{
+    if (ViewData.ContainsKey("InvalidInfo"))
+    {
+        <span id="customErrorMsg">Information Invalide</span>
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateFR">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Titre</label>
+                <input asp-for="Title" placeholder="ex: Mr." class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">Prénom</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label">Deuxième nom </label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Nom</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Suffix" class="control-label">Suffixe</label>
+                <input asp-for="Suffix" placeholder="ex: jr." class="form-control" />
+                <span asp-validation-for="Suffix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label">Companie</label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">Courriel</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                @if (ViewData.ContainsKey("emailUsed"))
+                {
+            <span id="customErrorMsg">Ce courriel est deja utilisé</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label">numéro de téléphone</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Mot de Pass</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label">Confirmer Mot de Pass</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" disabled value="Enregistrer" class="btn btn-primary" id="submit" />
+                <button type="reset" onclick="resetCaptcha();" class="btn btn-secondary">réinitialiser</button>
+                <div class="g-recaptcha"
+                     data-callback="enableBtn"
+                     data-sitekey="6Lc4UuMZAAAAALIfpRSSHl4bNGxD6Q0mgHiRyKQ0">
+                </div>
+                @if (ViewData.ContainsKey("captchaFailure"))
+                {
+                    <span id="customErrorMsg">Captcha Manqué</span>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function enableBtn() {
+        var response = grecaptcha.getResponse();
+        if (response.lenght != 0)
+            document.getElementById("submit").disabled = false;
+    }
+
+    function resetCaptcha() {
+        document.getElementById("submit").disabled = true;
+        grecaptcha.reset();
+    }
+</script>
+

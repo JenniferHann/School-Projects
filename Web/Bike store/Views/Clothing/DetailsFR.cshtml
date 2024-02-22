@@ -1,0 +1,219 @@
+﻿@model IEnumerable<NoNameBikes.Models.Product>
+
+@{
+    ViewData["Title"] = "Détails";
+    List<string> colours = new List<string>();
+    List<string> sizes = new List<string>();
+    List<string> productsNumbers = new List<string>();
+    Product selectedProduct = Model.First();
+    string name = selectedProduct.Name.Substring(0, selectedProduct.Name.IndexOf(" "));
+    String color = selectedProduct.Color;
+
+    foreach (var item in Model)
+    {
+        if (!sizes.Contains(item.Size))
+            sizes.Add(item.Size);
+
+        productsNumbers.Add(item.ProductNumber);
+    }
+
+}
+
+<style>
+    #grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "pic name"
+            "pic colours"
+            "pic sizes"
+            "pic prices";
+        width: 1000px;
+        grid-gap: 20px;
+    }
+
+    .productNum {
+        grid-area: productNumber;
+    }
+
+    .colour {
+        grid-area: colours;
+    }
+
+    .size {
+        grid-area: sizes;
+    }
+
+    .price {
+        grid-area: prices;
+    }
+
+    #namedesc {
+        grid-area: name;
+    }
+
+    #pic {
+        grid-area: pic;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+
+    .sale {
+        color: red;
+        margin: 0px;
+    }
+
+    .SalePrice {
+        font-weight: bold;
+        padding-bottom: 5px;
+        padding-left: 43px;
+    }
+
+    .discount {
+        font-size: 15px;
+        padding-left: 20px;
+    }
+</style>
+
+<br />
+<br />
+<div id="grid">
+    @{
+        var base64 = Convert.ToBase64String(selectedProduct.ThumbNailPhoto);
+        if (base64 == "R0lGODlhUAAxAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgICAgMDAwP8AAAD/AP//AAAA//8A/wD//////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAZgAAmQAAzAAA/wAzAAAzMwAzZgAzmQAzzAAz/wBmAABmMwBmZgBmmQBmzABm/wCZAACZMwCZZgCZmQCZzACZ/wDMAADMMwDMZgDMmQDMzADM/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMzADMzMzMzZjMzmTMzzDMz/zNmADNmMzNmZjNmmTNmzDNm/zOZADOZMzOZZjOZmTOZzDOZ/zPMADPMMzPMZjPMmTPMzDPM/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YzAGYzM2YzZmYzmWYzzGYz/2ZmAGZmM2ZmZmZmmWZmzGZm/2aZAGaZM2aZZmaZmWaZzGaZ/2bMAGbMM2bMZmbMmWbMzGbM/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5kzAJkzM5kzZpkzmZkzzJkz/5lmAJlmM5lmZplmmZlmzJlm/5mZAJmZM5mZZpmZmZmZzJmZ/5nMAJnMM5nMZpnMmZnMzJnM/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wzAMwzM8wzZswzmcwzzMwz/8xmAMxmM8xmZsxmmcxmzMxm/8yZAMyZM8yZZsyZmcyZzMyZ/8zMAMzMM8zMZszMmczMzMzM/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8zAP8zM/8zZv8zmf8zzP8z//9mAP9mM/9mZv9mmf9mzP9m//+ZAP+ZM/+ZZv+Zmf+ZzP+Z///MAP/MM//MZv/Mmf/MzP/M////AP//M///Zv//mf//zP///yH5BAEAABAALAAAAABQADEAAAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXJkRBYqBLhfGZPnQ5ct/MxPmpMnQpsCZNm/CfBnTZ86gQ3HeRMoRadGlQpUqJfoUZ9KnVH9GxVhUKtCoVaWKnZrVK9SmVMPuVHvWrFisPjd+LbuW7tmvb8t6nJuXIFutfbH2lSt07ta/eeOy3clTYuGtjS8yjUy5suXLmDHHdRjWIGPGIjdDBA3YL2SQVY+mvQsVL16yqLOqfuyWtlHZbTv+nY176G67H38DTs068GrSkoMSN+62+fKQqrW2Xe6aem7CSaf6fq7ceevTmcOLEh9Pvrz58+jTq1/Pvr379+8DAgA7")
+        {
+            <div id="pic"><img src="~/images/NoImageFR.PNG" alt="Image non disponible" /></div>
+        }
+        else
+        {
+            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+            <div id="pic"><img src='@imgsrc' alt="image du produit" /></div>
+        }
+
+        string nameFR = "";
+        if (name.Contains("Cycling Cap"))
+        {
+            nameFR = name.Replace("Cycling Cap", "Casquette de cyclisme");
+        }
+        else if (name.Contains("Half-Finger"))
+        {
+            nameFR = name.Replace("Half-Finger", "Gants demi-doigt");
+        }
+        else if (name.Contains("Long-Sleeve Logo Jersey"))
+        {
+            nameFR = name.Replace("Long-Sleeve Logo Jersey", "Maillot à manches longues à logo");
+        }
+        else if (name.Contains("Short-Sleeve Classic Jersey"))
+        {
+            nameFR = name.Replace("Short-Sleeve Classic Jersey", "Maillot classique à manches courtes");
+        }
+        else if (name.Contains("Women's Mountain Shorts"))
+        {
+            nameFR = name.Replace("Women's Mountain Shorts", "Shorts de montagne pour femmes");
+        }
+        else if (name.Contains("Racing Socks"))
+        {
+            nameFR = name.Replace("Racing Socks", "Chaussettes de course");
+        }
+        else if (name.Contains("Classic Vest"))
+        {
+            nameFR = name.Replace("Classic Vest", "Gilets classic");
+        }
+
+    }
+    <div id="namedesc">
+        <h3>@nameFR</h3>
+        <p>@ViewData["description"]</p>
+        <hr />
+    </div>
+    <form asp-action="AddToCart" asp-controller="HomeFR">
+        <div class="colour">
+            <label>Couleur:</label>
+            @{
+                string colorFR = "";
+                switch (color)
+                {
+                    case "Black":
+                        colorFR = "Noir";
+                        break;
+                    case "Red":
+                        colorFR = "Rouge";
+                        break;
+                    case "White":
+                        colorFR = "Blanc";
+                        break;
+                    case "Blue":
+                        colorFR = "Bleu";
+                        break;
+                    case "Multi":
+                        colorFR = "Multi";
+                        break;
+                    case "Silver":
+                        colorFR = "Argent";
+                        break;
+                    case "Gold":
+                        colorFR = "Or";
+                        break;
+                    case "Yellow":
+                        colorFR = "Jaune";
+                        break;
+                    case "Grey":
+                        colorFR = "Gris";
+                        break;
+                    default:
+                        colorFR = "Aucun";
+                        break;
+                }
+                @colorFR
+            }
+        </div>
+
+        @if (sizes.Count() != 0 && sizes.First() != null)
+        {
+            <div class="size">
+                <label for="sizes">Taille:</label>
+                <select id="sizes" name="@nameof(selectedProduct.Size)">
+                    @foreach (String size in sizes)
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </select>
+            </div>
+        }
+        <div class="price">
+            Prix: @{
+                if (selectedProduct.SalePrice != null)
+                {
+
+                    if (DateTime.Compare((DateTime)selectedProduct.SaleEndDate, DateTime.Now) > 0)
+                    {
+                        decimal discount = selectedProduct.ListPrice - (decimal)selectedProduct.SalePrice;
+                        <strike>@Math.Round(selectedProduct.ListPrice, 2)$</strike> <label class="sale discount">-@discount.ToString().Substring(0, discount.ToString().Length - 2)$</label>
+
+                        <p class="sale SalePrice">  @selectedProduct.SalePrice.ToString().Substring(0, selectedProduct.SalePrice.ToString().Length - 2)$</p>
+                    }
+                    else
+                    {
+                        <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                    }
+                }
+                else
+                {
+                    <strong>$@Math.Round(selectedProduct.ListPrice, 2)</strong>
+                }
+            }
+        </div>
+        <input type="hidden" name="@nameof(selectedProduct.ProductModelId)" value="@selectedProduct.ProductModelId" />
+        <br />
+        <label for="Quantity">Quantité:</label>
+        <input type="number" min="1" size="1" name="Quantity" value="1" />
+        <input class="btn btn-primary" type="submit" value="Ajouter au panier" />
+    </form>
+</div>

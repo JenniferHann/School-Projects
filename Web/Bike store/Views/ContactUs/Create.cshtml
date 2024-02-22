@@ -1,0 +1,101 @@
+﻿@model NoNameBikes.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label">Postal Code</label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic" class="control-label">Topic</label>
+                <select class="form-control" asp-for="Topic">
+                    <option value="" disabled selected>Select Topic</option>
+                    <option>My Order</option>
+                    <option>Feedback</option>
+                    <option>Product Question</option>
+                    <option>Customer Service and Feedback</option>
+                    <option>Technical Question, Specifications, Geometry, Sizing and Historical Information</option>
+                    <option>Warranty</option>
+                    <option>Registration</option>
+                    <option>Catalogue Requests</option>
+                    <option>Owner's Manuals</option>
+                    <option>Media Enquiries</option>
+                    <option>Sponsorship and Donations</option>
+                </select>
+                <span asp-validation-for="Topic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label">Comment</label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" id="submit"/>
+                <button type="reset"  class="btn btn-primary" onclick="resetAll()">Reset</button>
+            </div>
+            @{ 
+                if(!object.ReferenceEquals(null, Model))
+                {
+                    <p style="color: red">Error: Must specify that user is not a robot.</p>
+                }
+            }
+            <div class="form-group">
+                <div class="g-recaptcha" data-callback="enableBtn" data-sitekey="6Lc4UuMZAAAAALIfpRSSHl4bNGxD6Q0mgHiRyKQ0"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to Contact Us Page</a>
+</div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+    function resetAll() {
+        grecaptcha.reset(0);
+    }
+
+    function enableBtn() {
+        var response = grecaptcha.getResponse();
+        if (response.lenght != 0)
+            document.getElementById("submit").disabled = false;
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,83 @@
+﻿@model NoNameBikes.Models.Customer
+
+@{
+    ViewData["Title"] = "Se connecter";
+
+}
+<style>
+    span#customErrorMsg {
+        color: red;
+    }
+</style>
+
+<!--
+    google log in:
+        client id: 73291575528-keeln125okdb6ll45uf0d12mj0almnuo.apps.googleusercontent.com
+        secret : YhrsO8KLJD4ljAc7aI2WdgCP
+    -->
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=425562788472025&autoLogAppEvents=1" nonce="TtMphFu1"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="73291575528-keeln125okdb6ll45uf0d12mj0almnuo.apps.googleusercontent.com">
+
+<h4>
+    Entrez votre courriel et mot de passe pour vous connecter
+</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LogInFR">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">Courriel</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Mot de Pass</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            @if (ViewData.ContainsKey("popup"))
+            {
+                <span id="customErrorMsg">Courriel ou Mot de pass invalide</span>
+            }
+            <div class="form-group">
+                <input type="submit" disabled value="Connecter" class="btn btn-primary" id="submit" />
+                <div class="g-recaptcha"
+                     data-callback="enableBtn"
+                     data-sitekey="6Lc4UuMZAAAAALIfpRSSHl4bNGxD6Q0mgHiRyKQ0">
+                </div>
+                @if (ViewData.ContainsKey("captchaFailure"))
+                {
+                    <span id="customErrorMsg">Courriel ou Mot de pass invalide</span>
+                }
+            </div>
+            <div class="form-group">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <br />
+                <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+            </div>
+        </form>
+        <a asp-controller="Customer" asp-action="ForgotPassword">Mot de passe oublié? Cliquez ici pour réinitialiser</a>
+    </div>
+</div>
+
+<script>
+    function enableBtn() {
+        var response = grecaptcha.getResponse();
+        if (response.lenght != 0)
+            document.getElementById("submit").disabled = false;
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+</script>

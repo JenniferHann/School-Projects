@@ -1,0 +1,24 @@
+﻿@*@{
+        Layout = "_Layout";
+    }
+*@
+
+@{
+    string path = Convert.ToString(@Context.Request.Path);
+
+    if(path == "/")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        if (path.Contains("FR"))
+        {
+            Layout = "~/Views/Shared/_LayoutFR.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+}

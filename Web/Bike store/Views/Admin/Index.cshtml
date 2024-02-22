@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .contentContainer {
+        display: flex;
+        align-content: space-between;
+        font-size: x-large;
+    }
+
+    .contentText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+
+    .introText {
+        font-size: x-large;
+        margin-right: 1em;
+        text-align: center;
+    }
+
+    .covidList {
+        font-size: x-large;
+        margin-bottom: 0.75em;
+        margin-right: 1em;
+        list-style-type: none;
+        background-color: gold;
+    }
+
+    .listHeader {
+        margin-bottom: 0.75em;
+    }
+</style>
+
+<h1>Welcome to the Administration page.</h1>
+<h2>Please select an option below:</h2>
+<br>
+<hr>
+<br>
+
+<div class="text-center">
+    <div>
+        <a asp-action="Inventory" class="introText">Manage Inventory</a>
+        <a asp-action="Inventory"><img class="img" src="~/images/Admin/inventory.jpg" alt="error image not found" width="600px" height="400px" id="mainImage" /></a>
+    </div>
+    <hr>
+    <div>
+        <a asp-action="SalesReport" class="introText">See Sales Report</a>
+        <a asp-action="SalesReport"><img class="img" src="~/images/Admin/stats.jpg" alt="error image not found" width="600px" height="400px" id="mainImage" /></a>
+    </div>    
+</div>
+
+

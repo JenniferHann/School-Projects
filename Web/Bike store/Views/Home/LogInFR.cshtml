@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Connexion";
+}
+<style>
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    div.main {
+        width: 100%;
+        padding: 10px;
+    }
+
+    div.Formcontainer {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        grid-template-areas: "LogIn Register";
+    }
+
+    div#loginform {
+        grid-area: LogIn;
+        align-self: start;
+    }
+
+    div#registerForm {
+        grid-area: Register;
+    }
+
+    button {
+        padding: 10px;
+        border-radius: 2px;
+        background-color: #dedede;
+        border: 1px solid black;
+    }
+
+        button:hover {
+            background-color: #c2c2c2;
+        }
+</style>
+
+<div class="Formcontainer">
+    <div class="main" id="loginform">
+        <div>
+            <h1>Log in </h1>
+            <p>Veuillez saisir votre email et votre mot de passe si vous avez un compte</p>
+            <hr />
+            <form>
+                <div class="formItems">
+                    <label for="email"><b>Email</b></label><br />
+                    <input type="text" placeholder="Email" name="email" required>
+                    <br />
+                    <label for="psw"><b>Mot de Passe</b></label><br />
+                    <input type="password" placeholder="mot de passe" name="psw" required>
+                </div>
+                <div class="formBtn">
+                    <button type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main" id="registerForm">
+        <div>
+            <h1>S'inscrire</h1>
+            <p>Veuillez remplir ce formulaire pour créer un compte.</p>
+            <hr>
+            <form asp-action="Create">
+                <div class="formItems">
+
+                    <label for="email"><b>Email</b></label><br />
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                    <br />
+                    <label for="fname"><b>Prénom</b></label><br />
+                    <input type="text" placeholder="Prénom" name="fname" required>
+                    <br />
+                    <label for="lname"><b>Nom De Famille</b></label><br />
+                    <input type="text" placeholder="Nom de famille" name="lname" required>
+                    <br />
+                    <label for="psw"><b>Mot De Passe</b></label><br />
+                    <input type="password" placeholder="Mot de passe" name="psw" required>
+                    <br />
+                    <label for="psw-repeat"><b>Confirmer Le Mot De Passe</b></label><br />
+                    <input type="password" placeholder="Confirmer le mot de passe" name="psw-repeat" required>
+
+                    <div class="formBtn">
+                        <button type="submit" class="signupbtn">S'inscrire</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

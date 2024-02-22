@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@* Sorting Options  *@
+
+<h1>Inventory</h1>
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 15px;
+    }
+</style>
+@*Large table with every relevant item in the database*@
+
+<div class="text-center">
+    <a asp-action="Create"><button>Add New Product...</button></a>
+    <table>
+        <thead>
+            <tr>
+                @* Foreach field in database *@
+                <th>Name</th>
+                <th>Color</th>
+                <th>List Price</th>
+                <th>Size</th>
+                <th>Weight</th>
+                @*<th>Photo</th>*@
+                <th>Save</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                @* Foreach product in the database *@
+                foreach (var item in Model)
+                {
+                    <tr>
+                        @* Foreach field data in the product *@
+                        <td>@item.Name</td>
+                        <td>@item.Color</td>
+                        <td>@item.ListPrice</td>
+                        <td>@item.Size</td>
+                        <td>@item.Weight</td>
+                        @*<td>@item.ThumbNailPhoto</td>*@
+                        <td><a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a></td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+
+</script>

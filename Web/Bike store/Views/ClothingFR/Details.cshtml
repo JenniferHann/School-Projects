@@ -1,0 +1,105 @@
+﻿@model IEnumerable<NoNameBikes.Models.Product>
+
+@{
+    ViewData["Title"] = "Détails";
+    List<string> colours = new List<string>();
+    List<string> sizes = new List<string>();
+    List<string> productsNumbers = new List<string>();
+    Product selectedProduct = Model.First();
+    string name = selectedProduct.Name.Substring(0, selectedProduct.Name.IndexOf(" "));
+    String color = selectedProduct.Color;
+
+    foreach (var item in Model)
+    {
+        if (!sizes.Contains(item.Size))
+            sizes.Add(item.Size);
+
+        productsNumbers.Add(item.ProductNumber);
+    }
+
+}
+
+<style>
+    #grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "pic name"
+            "pic colours"
+            "pic sizes"
+            "pic prices";
+        width: 1000px;
+        grid-gap: 20px;
+    }
+
+    .productNum {
+        grid-area: productNumber;
+    }
+
+    .colour {
+        grid-area: colours;
+    }
+
+    .size {
+        grid-area: sizes;
+    }
+
+    .price {
+        grid-area: prices;
+    }
+
+    #namedesc {
+        grid-area: name;
+    }
+
+    #pic {
+        grid-area: pic;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+        border-style: solid;
+        border-color: black;
+        padding: 20px;
+    }
+</style>
+
+<br />
+<br />
+<div id="grid">
+    @{
+        Byte[] byteArray = selectedProduct.ThumbNailPhoto.ToArray();
+    }
+    <div id="pic"><img src="data:image/jpeg;base64," + @Convert.ToBase64String(byteArray) /></div>
+    <div id="namedesc">
+        <h3>@name</h3>
+        <p>@ViewData["description"]</p>
+        <hr />
+    </div>
+    <form asp-action="AddToCart" asp-controller="HomeFR">
+        <div class="colour">
+            <label>Couleur:</label>
+            @color
+        </div>
+
+        @if (sizes.Count() != 0 && sizes.First() != null)
+        {
+            <div class="size">
+                <label for="sizes">Taille:</label>
+                <select id="sizes" name="@nameof(selectedProduct.Size)">
+                    @foreach (String size in sizes)
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </select>
+            </div>
+        }
+        <div class="price">
+            Prix: $@Decimal.ToDouble(selectedProduct.ListPrice)
+        </div>
+        <input type="hidden" name="@nameof(selectedProduct.ProductModelId)" value="@selectedProduct.ProductModelId"/>
+        <input class="btn btn-primary" type="submit" value="Ajouter au panier" />
+    </form>
+</div>

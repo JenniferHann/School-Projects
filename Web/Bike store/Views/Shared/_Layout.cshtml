@@ -1,0 +1,290 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | No Name Bikes</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+@{  //Calculate total number of cart items
+    int numCartItems = 0;
+
+
+    //Check if "cart" cookie exists
+    if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey(NoNameBikes.Controllers.HomeController.CART_COOKIE))
+    {
+        //get cookie
+        String cartJson = HttpContextAccessor.HttpContext.Request.Cookies[NoNameBikes.Controllers.HomeController.CART_COOKIE]; //get cart as json-formatted string
+
+        //read json into the dictionary of products in the cart that links product id to quantities
+        Dictionary<int, int> cartProductId = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartJson);
+
+        foreach (KeyValuePair<int, int> item in cartProductId)
+            //add quantity of item to total number of cart items
+            numCartItems += item.Value;
+    }
+}
+
+<style>
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">No Name Bikes</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav">
+                        @{
+                            string cookie = "false";
+                            @if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey("LoggedIn"))
+                            {
+                                cookie = HttpContextAccessor.HttpContext.Request.Cookies["LoggedIn"];
+                            }
+                            @if (cookie == "false")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Create">Sign up</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="LogIn">Log In</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Details">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="LogOut">Log out</a>
+                                </li>
+                            }
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart">My Cart (@numCartItems)</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a id="dropbtn" class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="Index">Bikes</a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="Touring">Touring Bikes</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="Road">Road Bikes</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="Mountain">Mountain Bikes</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a id="dropbtn" class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Index">Components</a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Handlebars">Handlebars</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="BottomBrackets">Bottom Brackets</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Brakes">Brakes</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Chains">Chains</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Cranksets">Cranksets</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Derailleurs">Derailleurs</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="MountainFrames">Mountain Frames</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="RoadFrames">Road Frames</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="TouringFrames">Touring Frames</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Pedals">Pedals</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Components" asp-action="Saddles">Saddles</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a id="dropbtn" class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Index">Clothing</a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Caps">Caps</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Gloves">Gloves</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Jerseys">Jerseys</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Shorts">Shorts</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Socks">Socks</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Clothing" asp-action="Vests">Vests</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a id="dropbtn" class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Index">Accessories</a>
+                                <div class="dropdown-content">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="BikeRacks">Bike Racks</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="BikeStands">Bike Stands</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="BottlesAndCages">Bottles and Cages</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Cleaners">Cleaners</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Fenders">Fenders</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Helmets">Helmets</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="HydrationPacks">Hydration Packs</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="TiresAndTubes">Tires and Tubes</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sales">Special Offers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CovidRules">Covid-19</a>
+                        </li>
+                        @{
+                            bool isFrench = Convert.ToString(Context.Request.Path).Contains("FR");
+                            string[] path = Convert.ToString(@Context.Request.Path).Split('/');
+                            string controller = "Home";
+                            @*string controllerFR = "HomeFR";*@
+
+                            string action = "Index";
+                            string actionFR = "IndexFR";
+                            string productModel = "1";
+
+                            @*string hrefFR = "/HomeFR";*@
+                            string hrefFR = "/Home";
+                            string hrefEN = "/Home";
+
+                            int mainPage = 2;
+                            int allProducts = 3;
+                            int details = 4;
+
+                            if (path.Length == mainPage)
+                            {
+                                if (path[1] != "")
+                                {
+                                    controller = path[1];
+                                }
+                            }
+                            else if (path.Length == allProducts)
+                            {
+                                controller = path[1];
+
+                                string p = path[2].Replace("FR", "");
+
+                                action = p;
+
+                                actionFR = p + "FR";
+                            }
+                            else if (path.Length == details)
+                            {
+                                controller = path[1];
+                                productModel = path[3];
+                                string p = path[2].Replace("FR", "");
+
+                                action = p + "/" + productModel;
+
+                                actionFR = p + "FR";
+                                actionFR = actionFR + "/" + productModel;
+                            }
+
+                            @*action = action.Replace("FR", "");
+            actionFR = action + "FR";*@
+                            @*controller = controller.Replace("FR", "");
+            controllerFR = controller + "FR";*@
+
+                            if (path.Length == mainPage)
+                            {
+                                hrefFR = "/" + controller + "/IndexFR";
+                                hrefEN = "/" + controller;
+                                @*if (path[1] != "")
+                                {
+                                }*@
+                            }
+                            else
+                            {
+                                hrefFR = "/" + controller + "/" + actionFR;
+                                hrefEN = "/" + controller + "/" + action;
+                            }
+
+                            if (isFrench)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="@hrefEN" @*asp-area="" asp-controller="@controller" asp-action="@action"*@>EN</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="@hrefFR" @*asp-area="" asp-controller="@controllerFR" asp-action="@action" asp-fragment="@productModel"*@>FR</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!--FOOTER-->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="footer-text">
+                        <li>&copy; 2020 - No Name Bikes</li>
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                        <li><a asp-area="" asp-controller="Bikes" asp-action="Index">Bikes</a></li>
+                        <li><a asp-area="" asp-controller="Components" asp-action="Index">Components</a></li>
+                        <li><a asp-area="" asp-controller="Clothing" asp-action="Index">Clothing</a></li>
+                        <li><a asp-area="" asp-controller="Accessories" asp-action="Index">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <ul class="footer-text">
+                        <li>Store Hours:</li>
+                        <li>Monday-Friday: 9-6</li>
+                        <li>Saturday: 9-5</li>
+                        <li>Sunday: 10-4</li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <ul class="footer-text">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Services">Services</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Careers">Careers</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="CyclingSafety">Cycling Safety</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Returns">Returns</a></li>
+                        <li><a asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

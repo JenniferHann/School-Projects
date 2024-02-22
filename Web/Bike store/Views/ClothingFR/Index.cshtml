@@ -1,0 +1,224 @@
+﻿@model IEnumerable<NoNameBikes.Models.ProductCategory>
+
+@{
+    ViewData["Title"] = "Vêtements";
+}
+
+<style>
+    div {
+        text-align:center;
+        font-size:large;
+    }
+
+    img {
+        border:solid;
+        padding:20px;
+        margin:20px;
+    }
+
+    #sorts {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #sortAsc {
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortDesc {
+        text-align: right;
+        color: black;
+        border: solid;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #sortRow {
+        border-bottom: none;
+    }
+
+    a {
+        color: black;
+    }
+
+    a:hover, a:active {
+        color: white;
+        background-color: #bfbfbf;
+        padding: 5px;
+        text-decoration: none;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #actionLink:link, #actionLink:visited {
+        border-style: solid;
+        border-color: black;
+        color: black;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #actionLink:hover, #actionLink:active {
+        text-decoration: underline;
+    }
+
+    .components {
+        border-top: solid;
+        border-top-color: gray;
+    }
+
+    .paging {
+        padding-left: 50%;
+    }
+</style>
+
+<div>
+    <h1>Vêtements</h1>
+    <br />
+    @*<img class="img" src="~/images/cycling_jersey.jpg" alt="bike gears picture" width="450px" height="500px" />
+        <br />*@
+    <br />
+
+    <table id="sorts">
+        <tr>
+            <td>@Html.ActionLink("Trier par ordre décroissant", "Index", new { sortOrder = ViewBag.NameSortDParm }, new { id = "sortDesc" })</td>
+            <td>@Html.ActionLink("Trier par ordre croissant", "Index", new { sortOrder = ViewBag.NameSortAParm }, new { id = "sortAsc" })</td>
+        </tr>
+    </table>
+
+    <br />
+
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+                <tr class="components">
+                    <td>
+                        @{
+                            bool hasSpace = item.Name.Contains(" ");
+                            string name = item.Name;
+                            if (hasSpace == true)
+                            {
+                                name = name.Replace(" ", "");
+                            }
+
+                            <a href="@Url.Action(name, "Clothing", null)">
+                                @{
+                                    switch (item.Name)
+                                    {
+                                        case "Caps":
+                                            <img class="img" src="~/images/Clothing/caps.png" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                        case "Gloves":
+                                            <img class="img" src="~/images/Clothing/victor-xok-gloves.jpg" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                        case "Jerseys":
+                                            <img class="img" src="~/images/Clothing/munbaik-jerseys.jpg" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                        case "Shorts":
+                                            <img class="img" src="~/images/Clothing/munbaik-shorts.jpg" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                        case "Socks":
+                                            <img class="img" src="~/images/Clothing/helen-socks.jpg" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                        case "Vests":
+                                            <img class="img" src="~/images/Clothing/dmytro-samsonov-vests.jpg" alt="bike gears picture" width="500px" height="300px" />
+                                            break;
+                                    }
+                                }
+                            </a>
+                        }
+                    </td>
+
+                    <td>
+                        @{
+                            hasSpace = item.Name.Contains(" ");
+                            if (hasSpace == true)
+                            {
+                                name = item.Name;
+                                name = name.Replace(" ", "");
+                                @*@Html.ActionLink(item.Name, name, null, null, new { id = "actionLink" })*@
+                                switch (item.Name)
+                                {
+                                    case "Caps":
+                                        @Html.ActionLink("Casquettes", name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Gloves":
+                                        @Html.ActionLink("Gants", name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Jerseys":
+                                        @Html.ActionLink("Maillots", name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Shorts":
+                                        @Html.ActionLink("Shorts", name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Socks":
+                                        @Html.ActionLink("chaussettes", name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Vests":
+                                        @Html.ActionLink("Gilets", name, null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                @*@Html.ActionLink(item.Name, item.Name, null, null, new { id = "actionLink" })*@
+                                switch (item.Name)
+                                {
+                                    case "Caps":
+                                        @Html.ActionLink("Casquettes", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Gloves":
+                                        @Html.ActionLink("Gants", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Jerseys":
+                                        @Html.ActionLink("Maillots", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Shorts":
+                                        @Html.ActionLink("Shorts", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Socks":
+                                        @Html.ActionLink("chaussettes", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                    case "Vests":
+                                        @Html.ActionLink("Gilets", item.Name, null, null, new { id = "actionLink" })
+                                        break;
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <nav class="paging">
+        <vc:pager paging-list="@Model" />
+    </nav>
+
+    @*    @{
+            foreach (var item in Model)
+            {
+                <hr />
+                bool hasSpace = item.Name.Contains(" ");
+                if (hasSpace == true)
+                {
+                    string name = item.Name;
+                    name = name.Replace(" ", "");
+                    @Html.ActionLink(item.Name, name)
+                }
+                else
+                {
+                    @Html.ActionLink(item.Name, item.Name)
+                }
+            }
+        }*@
+</div>
